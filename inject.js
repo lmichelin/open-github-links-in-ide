@@ -1,6 +1,16 @@
 ;(async function() {
   'use strict'
 
+  const debounce = (func, wait = 250) => {
+    let timeout
+    return function(...args) {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        func.apply(this, args)
+      }, wait)
+    }
+  }
+
   const getOptions = async () => {
     return new Promise(resolve => {
       chrome.storage.sync.get(
@@ -19,6 +29,7 @@
   const filePathRegExp = /.+\/([^/]+)\/(blob|tree)\/[^/]+\/(.*)/
 
   const addVSCodeLinks = () => {
+    // repository content (files list)
     let files = document.querySelectorAll(
       '.files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate',
     )
@@ -41,6 +52,7 @@
       fileElement.parentNode.insertBefore(vscodeLinkElement, fileElement.nextSibling)
     })
 
+    // file links (file changes view & discussions)
     let grayDarkLinks = document.querySelectorAll('a.link-gray-dark[title]')
 
     grayDarkLinks.forEach(linkElement => {
@@ -51,16 +63,29 @@
 
       let vscodeLink = `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}`
 
-      const lineNumberNodes = linkElement.parentNode.parentNode.querySelectorAll(
-        'td[data-line-number]',
-      )
-
       try {
+        // in discussion
+        const lineNumberNodes = linkElement.parentNode.parentNode.querySelectorAll(
+          'td[data-line-number]',
+        )
+        // get last line number
         const lineNumber = lineNumberNodes[lineNumberNodes.length - 1].getAttribute(
           'data-line-number',
         )
         vscodeLink += `:${lineNumber}`
-      } catch (e) {}
+      } catch (err1) {
+        try {
+          // in changed files
+          const firstLineNumberNode = linkElement.parentNode.parentNode.parentNode.querySelector(
+            'td[data-line-number]',
+          )
+          // get first line number
+          const lineNumber = firstLineNumberNode.getAttribute('data-line-number')
+          vscodeLink += `:${lineNumber}`
+        } catch (err2) {
+          // no line number available
+        }
+      }
 
       let vscodeLinkElement = document.createElement('span')
       vscodeLinkElement.classList.add('open-in-vscode-link-code-review')
@@ -69,13 +94,31 @@
     })
   }
 
-  addVSCodeLinks()
+  // set up an observer
+  window.pageChangeObserver = new MutationObserver(
+    debounce(() => {
+      addVSCodeLinks()
+      observeChanges()
+    }),
+  )
 
-  // set up an observer for the title element
-  if (!window.titleChangeObserver) {
-    window.titleChangeObserver = new MutationObserver(addVSCodeLinks)
-    window.titleChangeObserver.observe(document.querySelector('head > title'), {
-      childList: true,
-    })
+  // observe route change
+  const title = document.querySelector('head > title')
+  window.pageChangeObserver.observe(title, {
+    childList: true,
+  })
+
+  // observe content changes
+  const observeChanges = () => {
+    let content = document.querySelector('.repository-content')
+
+    if (content)
+      window.pageChangeObserver.observe(content, {
+        childList: true,
+        subtree: true,
+      })
   }
+
+  addVSCodeLinks()
+  observeChanges()
 })()
