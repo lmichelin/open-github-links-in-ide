@@ -14,7 +14,7 @@
 
   const OPTIONS = await getOptions()
 
-  let vscodeSVGIcon = `<svg style="vertical-align: middle;" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261 260" stroke-linejoin="round"><path d="M195.47461-0.005859375L195.47461 223.29688 0.49609375 194.33789 195.47461 259.99219 260.47461 232.95312 260.47461 31.064453 260.49609 31.054688 260.47461 31.011719 260.47461 27.035156 195.47461-0.005859375z" fill="#007acc"/><path d="M127.24219 38.037109L67.521484 97.070312 31.566406 69.992188 16.748047 74.941406 53.328125 111.10156 16.748047 147.25977 31.566406 152.21094 67.521484 125.13086 67.523438 125.13086 127.24023 184.16016 163.00781 168.96289 163.00781 53.234375 127.24219 38.037109zM127.24023 80.158203L127.24023 142.03711 86.154297 111.09766 127.24023 80.158203z" fill="#007acc"/></svg>`
+  let vscodePngIcon = `<img style="vertical-align: middle;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAACglBMVEUAAAAAfr8ms/QAfL0AerwAkdYAeboAhMgAitMAcLIiqPIAbrEAhdAip/MAeMAAbLAAgtAAgdAAf9AAfc8gnvEAhcUAfL0JhsgirO0ntfUmtPUAfL4AfL0Ae7wms/QmsvQmsvQAerwAersAerslsfMAktcAktcAktcAebsAeboAeboAkNYAkNUAkNUAj9YAeLkAd7kAd7gAdrgGfMAiqu8AjtUAjtQAjtUAhswAc7UAdbcAdrcAdbcYmt8krfMAjdUAjNQAjNQAidEAeL0AdLYAdbcAO3gkrPQkq/IAjNUAidIAcbUAcrQjqvMjqfIAbrEAcbYAh9EAidQjqPMjqPIAb7IAb7IAbbIAfcYAh9EAhtEAhtIAY7Ejp/MipvIAbrEAbrAAbbAAcbgAhdEAhNAAhNAAhNAWmeYipfEAbbAAbK8AbbAAbrEAhdIAg9AAgtAAgs8Fg9QfoO8AbLAAbLAAbLAAg9EAgdAAgc8AgtEAgM8Af84goPEAgNIAfs4AfM0gn/Egn/EgoPEAidgAeswHf9McmOwgn/Ign/IFfcAhquwAersFfL8hqesmsfMmsfMAeboAeLkFer4hp+slsPQlr/Mlr/MAd7gAd7glrvMlrvMkrvMAjtQAdrcAdbckrPIkrPIkrPIAjNQAcbQAc7Ukq/Ikq/Ikq/IAitMAitMAiNEAe8IjqfIjqfIjqfIAf8cAiNIAiNIAiNIjqPIjqPIjp/IAbrEAhtEAhtEipvEipvEipvEAbrAAhNAAhNAipPEipPEipPEAgs8Ags8ho/Eho/Eho/EAgc8AgM4Ef9EdnOwhovEhofEhofEAfs4EftAcmuwgoPEgoPEEfM8cmev////jeiQ4AAAAiXRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAABV+O9TQoCW+bwrEsFau7wBiIICXrzf9+PFg2K+PrD7d/9uUGY+/B/Lt5Czv/w+9hTAh7fLMu7Kx7fLMu8Kx7fQs7/8PvYUwIe39/9uUGY+/B/Lt5/344WDYr4+sPtBiIICXrzBWvu8AJb5vCsSwFX5L1NCgP8i/AAAAABYktHRNV+vDsTAAAAB3RJTUUH4wYFFAA5oLBFugAAAP9JREFUGNNjYIACRlExcQlJKSYYn1laRrazS05eAcpnUVRS7u7p7etXYVBVU2dlYNPQ1JowcdLkKVOnMWjr6Oqx6xsYTp9hZGwyc9ZsBtM5ZuYWllZz51nb2NrNX7CQwd5hkaOT8+IlLq5u7h5Lly1n4PD0WrFy1WpvH04uX781a9cxcPsHrN+wcVNgEA9vcMjmLVsZQsO2hUdEbt8RFR0TG7dz126G+D0JiUnJKXv3paalZ+w/cJAhMys7hy83L//Q4YLCoiNHjzEUl5TyMwiUlVccP3Hy1OkzZ6FOF6ysqj53/sLFSzUwzwnV1tVfvtLQ2AQTYBBubmlta+8QAQBQHFgzTDo1jwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOS0wNi0wNVQyMTozMTowMCswMjowMNNGE5YAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTktMDYtMDVUMjA6MDA6NTcrMDI6MDCE6k96AAAAAElFTkSuQmCC" />`
 
   const filePathRegExp = /.+\/([^/]+)\/(blob|tree)\/[^/]+\/(.*)/
 
@@ -37,7 +37,7 @@
 
       let vscodeLinkElement = document.createElement('span')
       vscodeLinkElement.classList.add('open-in-vscode-link-file-explorer')
-      vscodeLinkElement.innerHTML = `<a href="${vscodeLink}" title="Open in VSCode">${vscodeSVGIcon}</a>`
+      vscodeLinkElement.innerHTML = `<a href="${vscodeLink}" title="Open in VSCode">${vscodePngIcon}</a>`
       fileElement.parentNode.insertBefore(vscodeLinkElement, fileElement.nextSibling)
     })
 
@@ -64,7 +64,7 @@
 
       let vscodeLinkElement = document.createElement('span')
       vscodeLinkElement.classList.add('open-in-vscode-link-code-review')
-      vscodeLinkElement.innerHTML = `<a href="${vscodeLink}" title="Open in VSCode">${vscodeSVGIcon}</a>`
+      vscodeLinkElement.innerHTML = `<a href="${vscodeLink}" title="Open in VSCode">${vscodePngIcon}</a>`
       linkElement.parentNode.insertBefore(vscodeLinkElement, null)
     })
   }
