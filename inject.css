@@ -1,0 +1,17 @@
+.files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate {
+  max-width: calc(100% - 22px);
+}
+
+.open-in-vscode-link-file-explorer {
+  margin-left: 5px;
+  float: right;
+  visibility: hidden;
+}
+
+.js-navigation-item.navigation-focus .open-in-vscode-link-file-explorer {
+  visibility: unset;
+}
+
+.Label + .open-in-vscode-link-code-review {
+  margin-left: 2px;
+}

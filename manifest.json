@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Open in VSCode",
+  "author": "Louis-Marie Michelin",
+  "homepage_url": "https://github.com/lmichelin/open-in-vscode",
+  "version": "1.0.0",
+  "description": "Open GitHub files links in VSCode",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": ["https://github.com/*"],
+      "js": ["inject.js"],
+      "css": ["inject.css"]
+    }
+  ],
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
