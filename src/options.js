@@ -1,15 +1,19 @@
-function saveOptions() {
-  var localPathForRepositories = document.getElementById('local-path').value
+function saveOptions(e) {
+  e.preventDefault()
+
+  var localPathForRepositories = document.getElementById("local-path").value
+  if (localPathForRepositories.endsWith("/"))
+    localPathForRepositories = localPathForRepositories.slice(0, -1)
+
+  var defaultIde = document.getElementById("ide").value
+
   chrome.storage.sync.set(
     {
       localPathForRepositories,
+      defaultIde,
     },
     function() {
-      var status = document.getElementById('status')
-      status.textContent = 'Options successfully saved.'
-      setTimeout(function() {
-        status.textContent = ''
-      }, 1000)
+      window.close()
     },
   )
 }
@@ -17,12 +21,15 @@ function saveOptions() {
 function restoreOptions() {
   chrome.storage.sync.get(
     {
-      localPathForRepositories: '/home/changeMe', // default value
+      localPathForRepositories: "/home/changeMe", // default value
+      defaultIde: "vscode", // default value
     },
     function(items) {
-      document.getElementById('local-path').value = items.localPathForRepositories
+      document.getElementById("local-path").value = items.localPathForRepositories
+      document.getElementById("ide").value = items.defaultIde
     },
   )
 }
-document.addEventListener('DOMContentLoaded', restoreOptions)
-document.getElementById('save').addEventListener('click', saveOptions)
+
+document.addEventListener("DOMContentLoaded", restoreOptions)
+document.getElementById("options-form").addEventListener("submit", saveOptions)

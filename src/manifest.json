@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Open in VSCode",
+  "name": "Open GitHub in IDE",
   "author": "Louis-Marie Michelin",
-  "homepage_url": "https://github.com/lmichelin/open-in-vscode",
-  "version": "1.0.0",
-  "description": "Open GitHub files links in VSCode",
+  "homepage_url": "https://github.com/lmichelin/open-github-links-in-ide",
+  "version": "1.0.1",
+  "description": "Open GitHub files links in your IDE",
   "permissions": ["storage"],
   "content_scripts": [
     {
@@ -14,10 +14,17 @@
       "css": ["inject.css"]
     }
   ],
-  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "options_ui": {
+    "page": "options.html"
+  },
   "icons": {
     "16": "icons/vscode16.png",
     "48": "icons/vscode48.png",
     "128": "icons/vscode128.png"
-  }
+  },
+  "web_accessible_resources": ["icons/*.png"]
 }

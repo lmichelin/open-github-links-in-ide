@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Open GitHub links in VSCode</title>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="/vendor/milligram.min.css" />
 </head>
 
 <body>
-	<h1>Open GitHub links in VSCode</h1>
+	<h3>Open GitHub links in your IDE</h3>
 
-	Local path where GitHub repositories are cloned:
-	<input autofocus id="local-path" />
-
-	<p>
-		<button id="save">Save</button>
-		<span id="status"></span>
-	</p>
+	<form id="options-form">
+		<label for="local-path">Local path where GitHub repositories are cloned on your computer:</label>
+		<input type="text" id="local-path" />
+		<label for="ide">The IDE you want to use to open GitHub links:</label>
+		<select id="ide">
+			<option value="vscode">Visual Studio Code</option>
+			<option value="vscode-insiders">Visual Studio Code Insiders</option>
+		</select>
+		<input type="submit" value="Save" />
+	</form>
 
 	<script src="options.js"></script>
 </body>

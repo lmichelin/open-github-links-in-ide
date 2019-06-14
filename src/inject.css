@@ -2,16 +2,16 @@
   max-width: calc(100% - 22px);
 }
 
-.open-in-vscode-link-file-explorer {
+.open-in-ide-link-file-explorer {
   margin-left: 5px;
   float: right;
   visibility: hidden;
 }
 
-.js-navigation-item.navigation-focus .open-in-vscode-link-file-explorer {
+.js-navigation-item.navigation-focus .open-in-ide-link-file-explorer {
   visibility: unset;
 }
 
-.Label + .open-in-vscode-link-code-review {
+.Label + .open-in-ide-link-code-review {
   margin-left: 2px;
 }
