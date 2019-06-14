@@ -3,7 +3,7 @@
   "name": "Open GitHub in IDE",
   "author": "Louis-Marie Michelin",
   "homepage_url": "https://github.com/lmichelin/open-github-links-in-ide",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Open GitHub files links in your IDE",
   "permissions": ["storage"],
   "content_scripts": [
@@ -22,9 +22,9 @@
     "page": "options.html"
   },
   "icons": {
-    "16": "icons/vscode16.png",
-    "48": "icons/vscode48.png",
-    "128": "icons/vscode128.png"
+    "16": "icons/github16.png",
+    "48": "icons/github48.png",
+    "128": "icons/github128.png"
   },
   "web_accessible_resources": ["icons/*.png"]
 }

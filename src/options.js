@@ -33,3 +33,5 @@ function restoreOptions() {
 
 document.addEventListener("DOMContentLoaded", restoreOptions)
 document.getElementById("options-form").addEventListener("submit", saveOptions)
+
+document.getElementById("version").innerHTML = chrome.runtime.getManifest().version

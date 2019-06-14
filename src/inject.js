@@ -38,6 +38,20 @@
       generateUrl: (repo, file, line) =>
         `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line || 1}`,
     },
+    phpstorm: {
+      name: "PhpStorm",
+      icon: "icons/phpstorm16.png",
+      generateUrl: (repo, file, line) =>
+        `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ||
+          1}`,
+    },
+    webstorm: {
+      name: "WebStorm",
+      icon: "icons/webstorm16.png",
+      generateUrl: (repo, file, line) =>
+        `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ||
+          1}`,
+    },
   }
 
   const filePathRegExp = /.+\/([^/]+)\/(blob|tree)\/[^/]+\/(.*)/
