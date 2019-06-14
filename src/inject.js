@@ -34,7 +34,7 @@
     },
     "vscode-insiders": {
       name: "Visual Studio Code Insiders",
-      icon: "",
+      icon: "icons/vscode-insiders16.png",
       generateUrl: (repo, file, line) =>
         `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line || 1}`,
     },

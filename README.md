@@ -19,7 +19,7 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
-### Version 1.0.1 - June 14, 2019
+### Version 1.0.2 - June 14, 2019
 
 * Add VSCode Insiders support
 * Add CSS theme for options page
