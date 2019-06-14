@@ -1,8 +1,10 @@
 # Chrome extension to open GitHub file links in your IDE
 
-This browser extension allows GitHub users to open files in your IDE directly from GitHub.
+This browser extension allows you to open files in your IDE directly from GitHub with the cursor at the desired line when possible.
 
-![](screenshots/screenshot1.png)
+<p align="center">
+	<img src="screenshots/tile440x280.png">
+<p>
 
 ## Supported IDEs:
 
