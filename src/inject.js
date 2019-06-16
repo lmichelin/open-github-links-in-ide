@@ -15,8 +15,13 @@
     return new Promise(resolve => {
       chrome.storage.sync.get(
         {
-          localPathForRepositories: "/home/changeMeInOptions", // default value
+          // set default values
+          localPathForRepositories: "/home/changeMeInOptions",
           defaultIde: "vscode",
+          showIconInFileTree: true,
+          showIconOnFileBlockHeaders: true,
+          showIconOnLineNumbers: true,
+          showDebugMessages: false,
         },
         resolve,
       )
@@ -25,134 +30,236 @@
 
   const OPTIONS = await getOptions()
 
+  function debug() {
+    if (OPTIONS.showDebugMessages)
+      console.log.apply(null, ["[OPEN-IN-IDE EXTENSION]", ...arguments])
+  }
+
   const EDITORS = {
     vscode: {
-      name: "Visual Studio Code",
+      name: "VS Code",
       icon: "icons/vscode16.png",
       generateUrl: (repo, file, line) =>
-        `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line || 1}`,
+        `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
+          line ? `:${line}` : ""
+        }`,
     },
     "vscode-insiders": {
-      name: "Visual Studio Code Insiders",
+      name: "VS Code Insiders",
       icon: "icons/vscode-insiders16.png",
       generateUrl: (repo, file, line) =>
-        `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line || 1}`,
+        `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
+          line ? `:${line}` : ""
+        }`,
     },
     phpstorm: {
       name: "PhpStorm",
       icon: "icons/phpstorm16.png",
       generateUrl: (repo, file, line) =>
-        `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ||
-          1}`,
+        `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
+          line ? `&line=${line}` : ""
+        }`,
     },
     webstorm: {
       name: "WebStorm",
       icon: "icons/webstorm16.png",
       generateUrl: (repo, file, line) =>
-        `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ||
-          1}`,
+        `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
+          line ? `&line=${line}` : ""
+        }`,
     },
+  }
+
+  const generateIconElement = (repo, file, lineNumber) => {
+    let editorIconElement = document.createElement("span")
+    let title = `Open in ${EDITORS[OPTIONS.defaultIde].name}`
+    if (lineNumber) title = `${title} at line ${lineNumber}`
+    editorIconElement.title = title
+    editorIconElement.classList.add("open-in-ide-icon")
+    editorIconElement.innerHTML = `<img src="${chrome.extension.getURL(
+      EDITORS[OPTIONS.defaultIde].icon,
+    )}" />`
+
+    editorIconElement.addEventListener("click", e => {
+      e.preventDefault()
+      const editorUrl = EDITORS[OPTIONS.defaultIde].generateUrl(repo, file, lineNumber)
+      location.href = editorUrl
+      debug(`Opened ${editorUrl}`)
+    })
+    return editorIconElement
   }
 
   const filePathRegExp = /.+\/([^/]+)\/(blob|tree)\/[^/]+\/(.*)/
 
-  const addEditorLinks = () => {
+  const addEditorIcons = () => {
+    debug("Adding editor icons")
+
+    let addedIconsCounter = 0
+
+    // -------------------------------
     // repository content (files list)
-    let files = document.querySelectorAll(
-      ".files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate",
-    )
+    // -------------------------------
 
-    files.forEach(fileElement => {
-      if (fileElement.parentNode.querySelector(".open-in-ide-link-file-explorer")) return
+    if (OPTIONS.showIconInFileTree) {
+      const files = document.querySelectorAll(
+        ".files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate",
+      )
 
-      let fileUrl = fileElement.querySelector("a").getAttribute("href")
-      if (!filePathRegExp.test(fileUrl)) return
+      files.forEach(fileElement => {
+        // don't add a new icon if icon already exists
+        if (fileElement.parentNode.querySelector(".open-in-ide-icon")) return
 
-      const pathInfo = filePathRegExp.exec(fileUrl)
-      const repo = pathInfo[1]
-      const file = pathInfo[3]
+        const fileUrl = fileElement.querySelector("a").getAttribute("href")
+        if (!filePathRegExp.test(fileUrl)) return
 
-      let editorLink = EDITORS[OPTIONS.defaultIde].generateUrl(repo, file)
+        const pathInfo = filePathRegExp.exec(fileUrl)
+        const repo = pathInfo[1]
+        const file = pathInfo[3]
 
-      let editorLinkElement = document.createElement("span")
-      editorLinkElement.classList.add("open-in-ide-link-file-explorer")
-      editorLinkElement.innerHTML = `<a href="${editorLink}" title="Open in ${
-        EDITORS[OPTIONS.defaultIde].name
-      }"><img style="vertical-align: middle;" src="${chrome.extension.getURL(
-        EDITORS[OPTIONS.defaultIde].icon,
-      )}" /></a>`
-      fileElement.parentNode.insertBefore(editorLinkElement, fileElement.nextSibling)
-    })
+        let editorIconElement = generateIconElement(repo, file)
+        editorIconElement.classList.add("open-in-ide-icon-file-explorer")
 
+        fileElement.parentNode.insertBefore(editorIconElement, fileElement.nextSibling)
+        addedIconsCounter++
+      })
+    }
+
+    // --------------------------------------------
     // file links (file changes view & discussions)
-    let grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
+    // --------------------------------------------
 
-    grayDarkLinks.forEach(linkElement => {
-      if (linkElement.parentNode.querySelector(".open-in-ide-link-code-review")) return
+    if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
+      // select file blocks
+      let grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
 
-      const file = linkElement.getAttribute("title")
       const repo = window.location.href.split("/")[4]
 
-      let lineNumber
+      grayDarkLinks.forEach(linkElement => {
+        let file
 
-      try {
-        // in discussion
-        const lineNumberNodes = linkElement.parentNode.parentNode.querySelectorAll(
-          "td[data-line-number]",
-        )
-        // get last line number
-        lineNumber = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
-      } catch (err1) {
         try {
-          // in changed files
-          const firstLineNumberNode = linkElement.parentNode.parentNode.parentNode.querySelector(
-            "td[data-line-number]",
-          )
-          // get first line number
-          lineNumber = firstLineNumberNode.getAttribute("data-line-number")
-        } catch (err2) {
-          // no line number available
+          file = linkElement
+            .getAttribute("title")
+            .split("→") // when file was renamed
+            .pop()
+            .trim()
+        } catch (error) {
+          // no file found
+          return
         }
-      }
 
-      let editorLink = EDITORS[OPTIONS.defaultIde].generateUrl(repo, file, lineNumber)
+        let lineNumberForFileBlock
+        let fileElement
 
-      let editorLinkElement = document.createElement("span")
-      editorLinkElement.classList.add("open-in-ide-link-code-review")
-      editorLinkElement.innerHTML = `<a href="${editorLink}" title="Open in ${
-        EDITORS[OPTIONS.defaultIde].name
-      }"><img style="vertical-align: middle;" src="${chrome.extension.getURL(
-        EDITORS[OPTIONS.defaultIde].icon,
-      )}" /></a>`
-      linkElement.parentNode.insertBefore(editorLinkElement, null)
-    })
+        try {
+          // in discussion
+          fileElement = linkElement.parentNode.parentNode
+          if (!fileElement.classList.contains("file")) throw Error()
+          const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
+          // get last line number
+          lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute(
+            "data-line-number",
+          )
+        } catch (err1) {
+          try {
+            // in changed files
+            fileElement = linkElement.parentNode.parentNode.parentNode
+            if (!fileElement.classList.contains("file")) throw Error()
+            const firstLineNumberNode = fileElement.querySelector(
+              "td.blob-num-deletion[data-line-number], td.blob-num-addition[data-line-number]",
+            )
+            // get first line number
+            lineNumberForFileBlock = firstLineNumberNode.getAttribute("data-line-number")
+          } catch (err2) {
+            // no line number available
+          }
+        }
+
+        if (
+          OPTIONS.showIconOnFileBlockHeaders &&
+          // don't add a new icon if icon already exists
+          !linkElement.parentNode.querySelector(".open-in-ide-icon")
+        ) {
+          let editorIconElement = generateIconElement(repo, file, lineNumberForFileBlock)
+
+          linkElement.parentNode.insertBefore(editorIconElement, null)
+          addedIconsCounter++
+        }
+
+        // add icon on each line number
+        if (OPTIONS.showIconOnLineNumbers) {
+          const clickableLineNumbersNodes = fileElement.querySelectorAll(
+            "td.blob-num.js-linkable-line-number[data-line-number]",
+          )
+
+          clickableLineNumbersNodes.forEach(lineNumberNode => {
+            // don't add a new icon if icon already exists
+            if (lineNumberNode.querySelector(".open-in-ide-icon")) return
+
+            const lineNumber = lineNumberNode.getAttribute("data-line-number")
+
+            let editorIconElement = generateIconElement(repo, file, lineNumber)
+
+            lineNumberNode.appendChild(editorIconElement)
+            addedIconsCounter++
+          })
+        }
+      })
+    }
+
+    debug(`Added ${addedIconsCounter} new editor icons`)
   }
-
-  // set up an observer
-  window.pageChangeObserver = new MutationObserver(
-    debounce(() => {
-      addEditorLinks()
-      observeChanges()
-    }),
-  )
-
-  // observe route change
-  const title = document.querySelector("head > title")
-  window.pageChangeObserver.observe(title, {
-    childList: true,
-  })
 
   // observe content changes
   const observeChanges = () => {
+    debug("Observing page changes")
+
     let content = document.querySelector(".repository-content")
 
     if (content)
-      window.pageChangeObserver.observe(content, {
+      pageChangeObserver.observe(content, {
         childList: true,
         subtree: true,
       })
   }
 
-  addEditorLinks()
+  // inject CSS rules for GitHub elements
+  let styleNode = document.createElement("style")
+
+  if (OPTIONS.showIconInFileTree)
+    // resize file names to leave some space for the icon
+    styleNode.innerHTML += `.files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate {
+      max-width: calc(100% - 22px);
+    }`
+
+  if (OPTIONS.showIconOnLineNumbers)
+    // hide file numbers on hover
+    styleNode.innerHTML += `.file tr:hover td.blob-num.js-linkable-line-number::before {
+      display: none;
+    }`
+
+  document.body.appendChild(styleNode)
+
+  // set up an observer
+  const pageChangeObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(
+      debounce(function(mutation) {
+        // prevent recursive mutation observation
+        if (mutation.target.querySelector(":scope > .open-in-ide-icon")) return
+        debug("Detected page changes:")
+        debug(mutation.target)
+        addEditorIcons()
+        observeChanges()
+      }),
+    )
+  })
+
+  addEditorIcons()
   observeChanges()
+
+  // observe route change
+  const title = document.querySelector("head > title")
+  pageChangeObserver.observe(title, {
+    childList: true,
+  })
 })()

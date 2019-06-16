@@ -1,17 +1,33 @@
-.files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate {
-  max-width: calc(100% - 22px);
-}
-
-.open-in-ide-link-file-explorer {
+/* position the icon correctly in file explorer and hide it */
+.open-in-ide-icon-file-explorer {
   margin-left: 5px;
   float: right;
   visibility: hidden;
 }
 
-.js-navigation-item.navigation-focus .open-in-ide-link-file-explorer {
+/* center vertically the icon and show pointer */
+.open-in-ide-icon > img {
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* show the icon when cursor hovers over the row */
+.js-navigation-item.navigation-focus .open-in-ide-icon-file-explorer {
   visibility: unset;
 }
 
-.Label + .open-in-ide-link-code-review {
+/* position the icon correctly when the 'outdated' label is visible */
+.Label + .open-in-ide-icon {
   margin-left: 2px;
+}
+
+/* position the icon correctly instead of the file number */
+.file td.blob-num.js-linkable-line-number .open-in-ide-icon {
+  position: relative;
+  bottom: 1px;
+}
+
+/* hide the icon when cursor doesn't hover over the row */
+.file tr:not(:hover) td.blob-num.js-linkable-line-number .open-in-ide-icon {
+  display: none;
 }

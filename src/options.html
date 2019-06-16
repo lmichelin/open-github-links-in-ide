@@ -6,19 +6,25 @@
 	<link rel="stylesheet" href="/vendor/milligram.min.css" />
 </head>
 
-<body>
+<body style="min-width: 500px;">
 	<h3>Open GitHub links in your IDE</h3>
 
 	<form id="options-form">
-		<label for="local-path">Local path where GitHub repositories are cloned on your computer:</label>
+		<label>Local path where GitHub repositories are cloned on your computer:</label>
 		<input type="text" id="local-path" />
-		<label for="ide">The IDE you want to use to open GitHub links:</label>
+		<label>The IDE you want to use to open GitHub links:</label>
 		<select id="ide">
 			<option value="vscode">Visual Studio Code</option>
 			<option value="vscode-insiders">Visual Studio Code Insiders</option>
 			<option value="phpstorm">PhpStorm</option>
 			<option value="webstorm">WebStorm</option>
 		</select>
+		<label>Where to show the icon ?</label>
+		<input type="checkbox" id="showIconInFileTree"> Show icon in file tree<br>
+		<input type="checkbox" id="showIconOnFileBlockHeaders"> Show icon on file blocks header<br>
+		<input type="checkbox" id="showIconOnLineNumbers"> Show icon on line numbers<br>
+		<label>Debugging</label>
+		<input type="checkbox" id="showDebugMessages"> Show debug messages in console<br>
 		<input type="submit" value="Save" />
 	</form>
 	<p style="float: right">
