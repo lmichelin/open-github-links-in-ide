@@ -26,6 +26,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.1 - June 20, 2019
+
+* Use popup instead of options page
+
 ### Version 1.1.0 - June 16, 2019
 
 * Show editor icon instead of line number when hovering over a line in file blocks

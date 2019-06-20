@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="/vendor/milligram.min.css" />
+</head>
+
+<body style="min-width: 500px;">
+	<h3>Open GitHub links in your IDE</h3>
+
+	<label>Local path where GitHub repositories are cloned on your computer:</label>
+	<input type="text" id="localPathForRepositories" />
+	<label>The IDE you want to use to open GitHub links:</label>
+	<select id="defaultIde">
+		<option value="vscode">Visual Studio Code</option>
+		<option value="vscode-insiders">Visual Studio Code Insiders</option>
+		<option value="phpstorm">PhpStorm</option>
+		<option value="webstorm">WebStorm</option>
+	</select>
+	<label>Where to show the icon ?</label>
+	<input type="checkbox" id="showIconInFileTree"> Show icon in file tree<br>
+	<input type="checkbox" id="showIconOnFileBlockHeaders"> Show icon on file blocks header<br>
+	<input type="checkbox" id="showIconOnLineNumbers"> Show icon on line numbers<br>
+	<label>Debugging</label>
+	<input type="checkbox" id="showDebugMessages"> Show debug messages in console<br>
+	<br>
+	Reload GitHub to apply changes
+	<div style="float: right">
+		Version <span id="version"></span> • <a target="_blank" href="https://github.com/lmichelin/open-github-links-in-ide#changelog">Changelog</a>
+	</div>
+
+	<script src="popup.js"></script>
+</body>
+</html>
