@@ -26,6 +26,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.2 - July 1, 2019
+
+* Fix blurry icons on Retina screens
+
 ### Version 1.1.1 - June 20, 2019
 
 * Use popup instead of options page
@@ -50,7 +54,6 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 * Add VS Code Insiders support
 * Add CSS theme for options page
 * Open options page automatically after install
-
 
 ### Version 1.0.0 - June 6, 2019
 

@@ -9,6 +9,7 @@
 .open-in-ide-icon > img {
   cursor: pointer;
   vertical-align: middle;
+  height: 16px;
 }
 
 /* show the icon when cursor hovers over the row */

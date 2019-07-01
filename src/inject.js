@@ -38,7 +38,7 @@
   const EDITORS = {
     vscode: {
       name: "VS Code",
-      icon: "icons/vscode16.png",
+      icon: "icons/vscode32.png",
       generateUrl: (repo, file, line) =>
         `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
           line ? `:${line}` : ""
@@ -46,7 +46,7 @@
     },
     "vscode-insiders": {
       name: "VS Code Insiders",
-      icon: "icons/vscode-insiders16.png",
+      icon: "icons/vscode-insiders32.png",
       generateUrl: (repo, file, line) =>
         `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
           line ? `:${line}` : ""
@@ -54,7 +54,7 @@
     },
     phpstorm: {
       name: "PhpStorm",
-      icon: "icons/phpstorm16.png",
+      icon: "icons/phpstorm32.png",
       generateUrl: (repo, file, line) =>
         `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
           line ? `&line=${line}` : ""
@@ -62,7 +62,7 @@
     },
     webstorm: {
       name: "WebStorm",
-      icon: "icons/webstorm16.png",
+      icon: "icons/webstorm32.png",
       generateUrl: (repo, file, line) =>
         `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
           line ? `&line=${line}` : ""
