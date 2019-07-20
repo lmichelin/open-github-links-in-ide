@@ -26,12 +26,22 @@
     let localPathForRepositories = event.target.value
     if (localPathForRepositories.endsWith("/"))
       localPathForRepositories = localPathForRepositories.slice(0, -1)
-    chrome.storage.sync.set({ [event.target.id]: localPathForRepositories })
+    chrome.storage.sync.set({ localPathForRepositories })
   })
 
   // add EventListener for defaultIde
   defaultIdeSelectElement.addEventListener("change", event => {
-    chrome.storage.sync.set({ [event.target.id]: event.target.value })
+    const defaultIde = event.target.value
+    chrome.storage.sync.set({ defaultIde })
+    chrome.browserAction.setIcon({
+      path: {
+        16: `icons/${defaultIde}16.png`,
+        32: `icons/${defaultIde}32.png`,
+        48: `icons/${defaultIde}48.png`,
+        64: `icons/${defaultIde}64.png`,
+        128: `icons/${defaultIde}128.png`,
+      },
+    })
   })
 
   checkboxes.forEach(checkbox => {

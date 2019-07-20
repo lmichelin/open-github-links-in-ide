@@ -14,12 +14,18 @@
       "css": ["inject.css"]
     }
   ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
   "browser_action": {
     "default_popup": "popup.html"
   },
   "icons": {
     "16": "icons/github16.png",
+    "32": "icons/github32.png",
     "48": "icons/github48.png",
+    "64": "icons/github64.png",
     "128": "icons/github128.png"
   },
   "web_accessible_resources": ["icons/*.png"]
