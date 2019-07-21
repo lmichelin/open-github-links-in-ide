@@ -45,22 +45,23 @@ const run = async () => {
   }
 
   const generateIconElement = (repo, file, lineNumber) => {
-    const editorIconElement = document.createElement("span")
+    const editorIconSpanElement = document.createElement("span")
     let title = `Open in ${EDITORS[OPTIONS.defaultIde].name}`
     if (lineNumber) title = `${title} at line ${lineNumber}`
-    editorIconElement.title = title
-    editorIconElement.classList.add("open-in-ide-icon")
-    editorIconElement.innerHTML = `<img src="${chrome.extension.getURL(
-      EDITORS[OPTIONS.defaultIde].icon,
-    )}" />`
+    editorIconSpanElement.title = title
+    editorIconSpanElement.classList.add("open-in-ide-icon")
 
-    editorIconElement.addEventListener("click", e => {
+    const editorIconImgElement = document.createElement("img")
+    editorIconImgElement.src = chrome.extension.getURL(EDITORS[OPTIONS.defaultIde].icon)
+    editorIconSpanElement.appendChild(editorIconImgElement)
+
+    editorIconSpanElement.addEventListener("click", e => {
       e.preventDefault()
       const editorUrl = EDITORS[OPTIONS.defaultIde].generateUrl(repo, file, lineNumber)
       location.href = editorUrl
       debug(`Opened ${editorUrl}`)
     })
-    return editorIconElement
+    return editorIconSpanElement
   }
 
   const filePathRegExp = /.+\/([^/]+)\/(blob|tree)\/[^/]+\/(.*)/

@@ -44,7 +44,7 @@ const run = async () => {
     })
   })
 
-  document.getElementById("version").innerHTML = chrome.runtime.getManifest().version
+  document.getElementById("version").innerText = chrome.runtime.getManifest().version
 }
 
 run()
