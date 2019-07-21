@@ -1,34 +1,7 @@
 import "./inject.css"
-;(async function() {
-  "use strict"
+import { getOptions, debounce } from "./utils"
 
-  const debounce = (func, wait = 250) => {
-    let timeout
-    return function(...args) {
-      clearTimeout(timeout)
-      timeout = setTimeout(() => {
-        func.apply(this, args)
-      }, wait)
-    }
-  }
-
-  const getOptions = async () => {
-    return new Promise(resolve => {
-      chrome.storage.sync.get(
-        {
-          // set default values
-          localPathForRepositories: "/home/changeMeInOptions",
-          defaultIde: "vscode",
-          showIconInFileTree: true,
-          showIconOnFileBlockHeaders: true,
-          showIconOnLineNumbers: true,
-          showDebugMessages: false,
-        },
-        resolve,
-      )
-    })
-  }
-
+const run = async () => {
   const OPTIONS = await getOptions()
 
   function debug() {
@@ -72,7 +45,7 @@ import "./inject.css"
   }
 
   const generateIconElement = (repo, file, lineNumber) => {
-    let editorIconElement = document.createElement("span")
+    const editorIconElement = document.createElement("span")
     let title = `Open in ${EDITORS[OPTIONS.defaultIde].name}`
     if (lineNumber) title = `${title} at line ${lineNumber}`
     editorIconElement.title = title
@@ -117,7 +90,7 @@ import "./inject.css"
         const repo = pathInfo[1]
         const file = pathInfo[3]
 
-        let editorIconElement = generateIconElement(repo, file)
+        const editorIconElement = generateIconElement(repo, file)
         editorIconElement.classList.add("open-in-ide-icon-file-explorer")
 
         fileElement.parentNode.insertBefore(editorIconElement, fileElement.nextSibling)
@@ -131,7 +104,7 @@ import "./inject.css"
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
       // select file blocks
-      let grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
+      const grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
 
       const repo = window.location.href.split("/")[4]
 
@@ -181,7 +154,7 @@ import "./inject.css"
           // don't add a new icon if icon already exists
           !linkElement.parentNode.querySelector(".open-in-ide-icon")
         ) {
-          let editorIconElement = generateIconElement(repo, file, lineNumberForFileBlock)
+          const editorIconElement = generateIconElement(repo, file, lineNumberForFileBlock)
 
           linkElement.parentNode.insertBefore(editorIconElement, null)
           addedIconsCounter++
@@ -199,7 +172,7 @@ import "./inject.css"
 
             const lineNumber = lineNumberNode.getAttribute("data-line-number")
 
-            let editorIconElement = generateIconElement(repo, file, lineNumber)
+            const editorIconElement = generateIconElement(repo, file, lineNumber)
 
             lineNumberNode.appendChild(editorIconElement)
             addedIconsCounter++
@@ -215,7 +188,7 @@ import "./inject.css"
   const observeChanges = () => {
     debug("Observing page changes")
 
-    let content = document.querySelector(".repository-content")
+    const content = document.querySelector(".repository-content")
 
     if (content)
       pageChangeObserver.observe(content, {
@@ -225,7 +198,7 @@ import "./inject.css"
   }
 
   // inject CSS rules for GitHub elements
-  let styleNode = document.createElement("style")
+  const styleNode = document.createElement("style")
 
   if (OPTIONS.showIconInFileTree)
     // resize file names to leave some space for the icon
@@ -263,4 +236,6 @@ import "./inject.css"
   pageChangeObserver.observe(title, {
     childList: true,
   })
-})()
+}
+
+run()
