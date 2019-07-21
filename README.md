@@ -26,6 +26,23 @@ I have not tested WebStorm support yet, feedbacks are welcome!
 
 Need a feature? Want to report a bug? Feel free to open an issue or a pull request!
 
+## Contributing
+
+* Clone the project
+* Run `npm install` to install the dependencies
+* Run `npm run dev` to start the development server
+* On Google Chrome:
+  * Open [chrome://extensions/](chrome://extensions/)
+  * Enable developer mode
+  * Click on `Load unpacked`
+  * Select the `dist/chrome` folder
+* On Firefox:
+  * Open [about:debugging](about:debugging)
+  * Enable add-on debugging
+  * Click on `Load Temporary Add-on`
+  * Select the `dist/firefox/manifest.json` file
+* The extension and the pages using it will be automatically reloaded when you modify the source code
+
 ## Changelog
 
 ### Version 1.1.2 - July 1, 2019
