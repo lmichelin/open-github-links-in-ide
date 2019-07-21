@@ -4,6 +4,10 @@
 
 This browser extension allows you to open files in your IDE directly from GitHub with the cursor at the desired line when possible.
 
+👉 Google Chrome: https://chrome.google.com/webstore/detail/open-github-in-ide/bmifnnfmccmleigpaolofacllndmfned
+
+👉 Firefox: https://addons.mozilla.org/firefox/addon/open-github-in-ide/
+
 <p align="center">
 	<img src="screenshots/tile440x280.png">
 <p>
