@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:10-browsers
     steps:
       - checkout
       - restore_cache:
@@ -17,5 +17,11 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Lint code
+          name: Lint JS and CSS code
           command: npm run lint
+      - run:
+          name: Build extension for Chrome and Firefox
+          command: npm run build
+      - run:
+          name: Run tests
+          command: npm test

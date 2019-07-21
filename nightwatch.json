@@ -1,0 +1,22 @@
+{
+  "src_folders": ["tests"],
+  "output_folder": false,
+  "webdriver": {
+    "start_process": true
+  },
+  "test_settings": {
+    "default": {
+      "webdriver": {
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515,
+        "cli_args": ["--verbose"]
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args": ["--load-extension=dist/chrome"]
+        }
+      }
+    }
+  }
+}
