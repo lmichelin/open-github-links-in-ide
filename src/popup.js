@@ -1,4 +1,4 @@
-import "milligram/dist/milligram.min.css"
+import "./milligram.css"
 import { setExtensionIcon, getOptions } from "./utils"
 
 const run = async () => {
