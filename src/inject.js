@@ -46,7 +46,8 @@ const run = async () => {
 
   const generateIconElement = (repo, file, lineNumber) => {
     const editorIconSpanElement = document.createElement("span")
-    let title = `Open in ${EDITORS[OPTIONS.defaultIde].name}`
+    const filename = file.split("/").pop()
+    let title = `Open ${filename} in ${EDITORS[OPTIONS.defaultIde].name}`
     if (lineNumber) title = `${title} at line ${lineNumber}`
     editorIconSpanElement.title = title
     editorIconSpanElement.classList.add("open-in-ide-icon")
