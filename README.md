@@ -1,4 +1,4 @@
-# Chrome extension to open GitHub file links in your IDE
+# Browser extension to open GitHub file links in your IDE
 
 [![CircleCI](https://circleci.com/gh/lmichelin/open-github-links-in-ide.svg?style=svg)](https://circleci.com/gh/lmichelin/open-github-links-in-ide)
 
@@ -44,6 +44,11 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 * The extension and the pages using it will be automatically reloaded when you modify the source code
 
 ## Changelog
+
+### Version 1.1.3 - July 21, 2019
+
+* Add Firefox support 🎉
+* Set the extension icon according to the selected IDE
 
 ### Version 1.1.2 - July 1, 2019
 
