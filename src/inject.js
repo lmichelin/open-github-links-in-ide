@@ -1,3 +1,4 @@
+import "./inject.css"
 ;(async function() {
   "use strict"
 

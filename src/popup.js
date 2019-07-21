@@ -1,3 +1,4 @@
+import "milligram/dist/milligram.min.css"
 ;(function() {
   const localPathInputElement = document.getElementById("localPathForRepositories")
   const defaultIdeSelectElement = document.getElementById("defaultIde")
