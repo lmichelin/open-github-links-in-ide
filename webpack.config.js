@@ -9,7 +9,7 @@ const ZipWebpackPlugin = require("zip-webpack-plugin")
 const ExtensionReloader = require("webpack-extension-reloader")
 
 const generatePlugins = (mode, browser) => {
-  let plugins = [
+  const plugins = [
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
@@ -18,7 +18,7 @@ const generatePlugins = (mode, browser) => {
       {
         from: "manifest.json",
         transform: content => {
-          let manifest = {
+          const manifest = {
             description: process.env.npm_package_description,
             version: process.env.npm_package_version,
             ...JSON.parse(content.toString()),
