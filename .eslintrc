@@ -3,7 +3,8 @@
   "plugins": ["html"],
   "env": {
     "browser": true,
-    "webextensions": true
+    "webextensions": true,
+    "jest": true
   },
   "rules": {
     "prettier/prettier": [

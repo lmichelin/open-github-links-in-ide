@@ -59,7 +59,8 @@ const generatePlugins = (mode, browser) => {
     plugins.push(
       new ZipWebpackPlugin({
         path: path.join(__dirname, "build"),
-        filename: `${browser}.zip`,
+        filename: browser,
+        extension: browser === "firefox" ? "xpi" : "zip",
       }),
     )
   }
