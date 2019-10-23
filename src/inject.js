@@ -34,6 +34,14 @@ const run = async () => {
           line ? `&line=${line}` : ""
         }`,
     },
+    "intellij-idea": {
+      name: "IntelliJ IDEA",
+      icon: "icons/intellij-idea32.png",
+      generateUrl: (repo, file, line) =>
+        `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
+          line ? `&line=${line}` : ""
+        }`,
+    },
     webstorm: {
       name: "WebStorm",
       icon: "icons/webstorm32.png",
