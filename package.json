@@ -1,6 +1,6 @@
 {
   "name": "open-github-links-in-ide",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Open GitHub files links in your IDE",
   "geckoId": "{f1402343-719c-4b96-bc4f-f7bdcd7f796c}",
   "scripts": {
@@ -21,27 +21,27 @@
   },
   "homepage": "https://github.com/lmichelin/open-github-links-in-ide#readme",
   "devDependencies": {
-    "chromedriver": "^76.0.1",
+    "chromedriver": "^77.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
-    "eslint": "^6.3.0",
-    "eslint-config-prettier": "^6.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "nightwatch": "^1.2.2",
+    "nightwatch": "^1.2.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^1.18.2",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8",
-    "webpack-extension-reloader": "^1.1.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-extension-reloader": "^1.1.1",
     "zip-webpack-plugin": "^3.0.0"
   }
 }

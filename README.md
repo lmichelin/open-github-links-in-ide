@@ -17,9 +17,10 @@ This browser extension allows you to open files in your IDE directly from GitHub
 * VS Code
 * VS Code Insiders
 * PhpStorm
+* IntelliJ IDEA
 * WebStorm (not tested yet)
 
-PhpStorm support is native on MacOS, but on Linux and Windows you need to install an url handler:
+PhpStorm & IntelliJ IDEA support is native on MacOS, but on Linux and Windows you need to install an url handler (see [this answer](https://stackoverflow.com/a/56066943/104891)):
 
 * Linux: https://github.com/sanduhrs/phpstorm-url-handler
 * Windows: https://github.com/aik099/PhpStormProtocol
@@ -48,6 +49,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 * The extension and the pages using it will be automatically reloaded when you modify the source code
 
 ## Changelog
+
+### Version 1.1.4 - Oct 23, 2019
+
+* Add IntelliJ IDEA support
 
 ### Version 1.1.3 - July 21, 2019
 
