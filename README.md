@@ -2,14 +2,14 @@
 
 [![CircleCI](https://circleci.com/gh/lmichelin/open-github-links-in-ide.svg?style=svg)](https://circleci.com/gh/lmichelin/open-github-links-in-ide)
 
-This browser extension allows you to open files in your IDE directly from GitHub with the cursor at the desired line when possible.
+This browser extension allows you to open files in your IDE directly from GitHub, assuming the repository you are working on is cloned on your computer. When a fragment of a file is displayed, your IDE opens the file and puts the cursor at the desired line.
 
 👉 Google Chrome: https://chrome.google.com/webstore/detail/open-github-in-ide/bmifnnfmccmleigpaolofacllndmfned
 
 👉 Firefox: https://addons.mozilla.org/firefox/addon/open-github-in-ide/
 
 <p align="center">
-	<img src="screenshots/tile440x280.png">
+	<img src="screenshots/readme.png">
 <p>
 
 ## Supported IDEs:
