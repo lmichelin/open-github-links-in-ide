@@ -4,8 +4,8 @@
   "description": "Open GitHub files links in your IDE",
   "geckoId": "{f1402343-719c-4b96-bc4f-f7bdcd7f796c}",
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore . && prettier -c src/**/*.css",
-    "lint:fix": "eslint --fix --ignore-path .gitignore . && prettier --write src/**/*.css",
+    "lint": "eslint --ignore-path .gitignore . && prettier --ignore-path .gitignore -c **/*.{css,md}",
+    "lint:fix": "eslint --fix --ignore-path .gitignore . && prettier --ignore-path .gitignore --write **/*.{css,md}",
     "test": "nightwatch",
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production"
