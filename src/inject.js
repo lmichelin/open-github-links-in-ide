@@ -5,8 +5,7 @@ const run = async () => {
   const OPTIONS = await getOptions()
 
   function debug() {
-    if (OPTIONS.showDebugMessages)
-      console.log.apply(null, ["[OPEN-IN-IDE EXTENSION]", ...arguments])
+    if (OPTIONS.showDebugMessages) console.log.apply(null, ["[OPEN-IN-IDE EXTENSION]", ...arguments])
   }
 
   const EDITORS = {
@@ -14,41 +13,31 @@ const run = async () => {
       name: "VS Code",
       icon: "icons/vscode32.png",
       generateUrl: (repo, file, line) =>
-        `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
-          line ? `:${line}` : ""
-        }`,
+        `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`,
     },
     "vscode-insiders": {
       name: "VS Code Insiders",
       icon: "icons/vscode-insiders32.png",
       generateUrl: (repo, file, line) =>
-        `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${
-          line ? `:${line}` : ""
-        }`,
+        `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`,
     },
     phpstorm: {
       name: "PhpStorm",
       icon: "icons/phpstorm32.png",
       generateUrl: (repo, file, line) =>
-        `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
-          line ? `&line=${line}` : ""
-        }`,
+        `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `&line=${line}` : ""}`,
     },
     "intellij-idea": {
       name: "IntelliJ IDEA",
       icon: "icons/intellij-idea32.png",
       generateUrl: (repo, file, line) =>
-        `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
-          line ? `&line=${line}` : ""
-        }`,
+        `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `&line=${line}` : ""}`,
     },
     webstorm: {
       name: "WebStorm",
       icon: "icons/webstorm32.png",
       generateUrl: (repo, file, line) =>
-        `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${
-          line ? `&line=${line}` : ""
-        }`,
+        `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `&line=${line}` : ""}`,
     },
   }
 
@@ -141,9 +130,7 @@ const run = async () => {
           if (!fileElement.classList.contains("file")) throw Error()
           const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
           // get last line number
-          lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute(
-            "data-line-number",
-          )
+          lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
         } catch (err1) {
           try {
             // in changed files

@@ -7,12 +7,7 @@ const run = async () => {
   const localPathInputElement = document.getElementById("localPathForRepositories")
   const defaultIdeSelectElement = document.getElementById("defaultIde")
 
-  const checkboxes = [
-    "showIconInFileTree",
-    "showIconOnFileBlockHeaders",
-    "showIconOnLineNumbers",
-    "showDebugMessages",
-  ]
+  const checkboxes = ["showIconInFileTree", "showIconOnFileBlockHeaders", "showIconOnLineNumbers", "showDebugMessages"]
 
   // set localPathForRepositories and defaultIde values
   localPathInputElement.value = OPTIONS.localPathForRepositories
@@ -21,8 +16,7 @@ const run = async () => {
   // add EventListener for localPathForRepositories
   localPathInputElement.addEventListener("input", event => {
     let localPathForRepositories = event.target.value
-    if (localPathForRepositories.endsWith("/"))
-      localPathForRepositories = localPathForRepositories.slice(0, -1)
+    if (localPathForRepositories.endsWith("/")) localPathForRepositories = localPathForRepositories.slice(0, -1)
     chrome.storage.sync.set({ localPathForRepositories })
   })
 
