@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": ["standard", "plugin:prettier/recommended", "prettier/standard"],
   "plugins": ["html"],
   "env": {
