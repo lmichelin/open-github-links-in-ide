@@ -2,26 +2,26 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12-browsers
     steps:
       - checkout
       - restore_cache:
           name: Restore dependencies cache
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependencies-cache-{{ checksum "yarn.lock" }}
       - run:
           name: Install dependencies
-          command: npm install
+          command: yarn install --frozen-lockfile
       - save_cache:
           name: Save dependencies cache
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependencies-cache-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
       - run:
           name: Lint JS and CSS code
-          command: npm run lint
+          command: yarn lint
       - run:
           name: Build extension for Chrome and Firefox
-          command: npm run build
+          command: yarn build
       - run:
           name: Run tests
-          command: npm test
+          command: yarn test

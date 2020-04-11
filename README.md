@@ -34,8 +34,8 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 ## Contributing
 
 - Clone the project
-- Run `npm install` to install the dependencies
-- Run `npm run dev` to start the development server
+- Run `yarn` to install the dependencies
+- Run `yarn dev` to start the development server
 - On Google Chrome:
   - Open [chrome://extensions/](chrome://extensions/)
   - Enable developer mode

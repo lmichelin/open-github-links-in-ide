@@ -212,9 +212,9 @@ const run = async () => {
   document.body.appendChild(styleNode)
 
   // set up an observer
-  const pageChangeObserver = new MutationObserver(function(mutations) {
+  const pageChangeObserver = new MutationObserver(function (mutations) {
     mutations.forEach(
-      debounce(function(mutation) {
+      debounce(function (mutation) {
         // prevent recursive mutation observation
         if (mutation.target.querySelector(":scope > .open-in-ide-icon")) return
         debug("Detected page changes:")
