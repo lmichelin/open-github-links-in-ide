@@ -8,7 +8,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const ZipWebpackPlugin = require("zip-webpack-plugin")
 const ExtensionReloader = require("webpack-extension-reloader")
 
-const generatePlugins = (mode, browser) => {
+const generatePlugins = (env, mode, browser) => {
   const plugins = [
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
@@ -25,6 +25,11 @@ const generatePlugins = (mode, browser) => {
           }
           if (mode === "development") {
             manifest.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'"
+          }
+          if (mode === "development" || env.test) {
+            manifest.content_scripts.forEach(script => {
+              script.all_frames = true // allow cypress tests
+            })
           }
           if (browser === "firefox") {
             manifest.browser_specific_settings = {
@@ -67,7 +72,7 @@ const generatePlugins = (mode, browser) => {
   return plugins
 }
 
-const generateWebpackConfig = (mode, browser) => {
+const generateWebpackConfig = (env, mode, browser) => {
   return {
     stats: "minimal",
     watch: mode === "development",
@@ -91,11 +96,11 @@ const generateWebpackConfig = (mode, browser) => {
     optimization: {
       minimizer: [new TerserJSPlugin(), new OptimizeCssAssetsPlugin()],
     },
-    plugins: generatePlugins(mode, browser),
+    plugins: generatePlugins(env, mode, browser),
   }
 }
 
-module.exports = (env, argv) => [
-  generateWebpackConfig(argv.mode, "chrome"),
-  generateWebpackConfig(argv.mode, "firefox"),
+module.exports = (env = {}, argv) => [
+  generateWebpackConfig(env, argv.mode, "chrome"),
+  generateWebpackConfig(env, argv.mode, "firefox"),
 ]

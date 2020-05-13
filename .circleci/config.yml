@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -15,13 +15,17 @@ jobs:
           name: Save dependencies cache
           key: dependencies-cache-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ~/.cache/Cypress
+            - node_modules
       - run:
           name: Lint JS and CSS code
           command: yarn lint
       - run:
           name: Build extension for Chrome and Firefox
-          command: yarn build
+          command: yarn build:test
       - run:
-          name: Run tests
-          command: yarn test
+          name: Run tests on Chrome
+          command: yarn test:chrome
+      - run:
+          name: Run tests on Firefox
+          command: yarn test:firefox
