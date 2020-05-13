@@ -24,5 +24,8 @@ jobs:
           name: Build extension for Chrome and Firefox
           command: yarn build:test
       - run:
-          name: Run tests
+          name: Run tests on Chrome
           command: yarn test:chrome
+      - run:
+          name: Run tests on Firefox
+          command: yarn test:firefox

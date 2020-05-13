@@ -1,6 +1,7 @@
 context("VS Code icon", () => {
   it("should be visible only once in file tree on hover", () => {
     cy.visit("/lmichelin/open-github-links-in-ide")
+    cy.waitForNetworkIdle()
     cy.get("a[title='README.md']").trigger("mouseover")
     cy.get("span[title='Open README.md in VS Code']").should("be.visible")
     cy.get("a[title='.gitignore']").trigger("mouseover")

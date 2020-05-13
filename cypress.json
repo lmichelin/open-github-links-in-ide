@@ -1,4 +1,5 @@
 {
   "baseUrl": "https://github.com",
-  "video": false
+  "video": false,
+  "firefoxGcInterval": null
 }
