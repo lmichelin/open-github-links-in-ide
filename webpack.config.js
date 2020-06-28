@@ -13,35 +13,37 @@ const generatePlugins = (env, mode, browser) => {
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
-    new CopyWebpackPlugin([
-      { from: "icons", to: "icons" },
-      {
-        from: "manifest.json",
-        transform: content => {
-          const manifest = {
-            description: process.env.npm_package_description,
-            version: process.env.npm_package_version,
-            ...JSON.parse(content.toString()),
-          }
-          if (mode === "development") {
-            manifest.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'"
-          }
-          if (mode === "development" || env.test) {
-            manifest.content_scripts.forEach(script => {
-              script.all_frames = true // allow cypress tests
-            })
-          }
-          if (browser === "firefox") {
-            manifest.browser_specific_settings = {
-              gecko: {
-                id: process.env.npm_package_geckoId,
-              },
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "icons", to: "icons" },
+        {
+          from: "manifest.json",
+          transform: content => {
+            const manifest = {
+              description: process.env.npm_package_description,
+              version: process.env.npm_package_version,
+              ...JSON.parse(content.toString()),
             }
-          }
-          return Buffer.from(JSON.stringify(manifest))
+            if (mode === "development") {
+              manifest.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'"
+            }
+            if (mode === "development" || env.test) {
+              manifest.content_scripts.forEach(script => {
+                script.all_frames = true // allow cypress tests
+              })
+            }
+            if (browser === "firefox") {
+              manifest.browser_specific_settings = {
+                gecko: {
+                  id: process.env.npm_package_geckoId,
+                },
+              }
+            }
+            return Buffer.from(JSON.stringify(manifest))
+          },
         },
-      },
-    ]),
+      ],
+    }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "popup.html",
