@@ -75,7 +75,7 @@ const run = async () => {
 
     if (OPTIONS.showIconInFileTree) {
       const files = document.querySelectorAll(
-        ".files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate",
+        '[aria-labelledby="files"].js-navigation-container > .Box-row.js-navigation-item .css-truncate',
       )
 
       files.forEach(fileElement => {
@@ -103,7 +103,7 @@ const run = async () => {
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
       // select file blocks
-      const grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
+      const grayDarkLinks = document.querySelectorAll(".file-header a.link-gray-dark[title]")
 
       const repo = window.location.href.split("/")[4]
 
