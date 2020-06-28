@@ -26,5 +26,5 @@
     "64": "icons/github64.png",
     "128": "icons/github128.png"
   },
-  "web_accessible_resources": ["icons/*.png"]
+  "web_accessible_resources": ["icons/*.png", "popup.html"]
 }
