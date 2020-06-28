@@ -50,6 +50,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.5 - June 29, 2020
+
+- Make extension compatible with new GitHub design
+
 ### Version 1.1.4 - Oct 23, 2019
 
 - Add IntelliJ IDEA support

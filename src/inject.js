@@ -44,9 +44,9 @@ const run = async () => {
   const generateIconElement = (repo, file, lineNumber) => {
     const editorIconSpanElement = document.createElement("span")
     const filename = file.split("/").pop()
-    let title = `Open ${filename} in ${EDITORS[OPTIONS.defaultIde].name}`
-    if (lineNumber) title = `${title} at line ${lineNumber}`
-    editorIconSpanElement.title = title
+    let iconTitle = `Open ${filename} in ${EDITORS[OPTIONS.defaultIde].name}`
+    if (lineNumber) iconTitle = `${iconTitle} at line ${lineNumber}`
+    editorIconSpanElement.title = iconTitle
     editorIconSpanElement.classList.add("open-in-ide-icon")
 
     const editorIconImgElement = document.createElement("img")
@@ -75,7 +75,7 @@ const run = async () => {
 
     if (OPTIONS.showIconInFileTree) {
       const files = document.querySelectorAll(
-        ".files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate",
+        '[aria-labelledby="files"].js-navigation-container > .Box-row.js-navigation-item .css-truncate',
       )
 
       files.forEach(fileElement => {
@@ -103,7 +103,7 @@ const run = async () => {
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
       // select file blocks
-      const grayDarkLinks = document.querySelectorAll("a.link-gray-dark[title]")
+      const grayDarkLinks = document.querySelectorAll(".file-header a.link-gray-dark[title]")
 
       const repo = window.location.href.split("/")[4]
 

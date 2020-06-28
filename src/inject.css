@@ -1,7 +1,14 @@
+/* position the icon correctly in file explorer */
+[aria-labelledby="files"].js-navigation-container
+  > .Box-row.js-navigation-item
+  [role="rowheader"] {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* position the icon correctly in file explorer and hide it */
 .open-in-ide-icon-file-explorer {
   margin-left: 5px;
-  float: right;
   visibility: hidden;
 }
 
