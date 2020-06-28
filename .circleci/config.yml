@@ -29,3 +29,20 @@ jobs:
       - run:
           name: Run tests on Firefox
           command: yarn test:firefox
+
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 7 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
