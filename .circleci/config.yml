@@ -30,7 +30,6 @@ jobs:
           name: Run tests on Firefox
           command: yarn test:firefox
 
-
 workflows:
   version: 2
   commit:
