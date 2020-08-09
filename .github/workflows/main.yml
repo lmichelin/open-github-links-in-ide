@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 7 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Check types
+        run: yarn type-check
+
+      - name: Lint JS and CSS code
+        run: yarn lint
+
+      - name: Build extension for Chrome and Firefox
+        run: yarn build:test
+
+      - name: Run tests on Chrome
+        run: yarn test:chrome
+
+      - name: Run tests on Firefox
+        run: yarn test:firefox
