@@ -5,16 +5,5 @@
   "env": {
     "browser": true,
     "webextensions": true
-  },
-  "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "semi": false,
-        "trailingComma": "all",
-        "arrowParens": "avoid",
-        "printWidth": 120
-      }
-    ]
   }
 }

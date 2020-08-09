@@ -1,7 +1,5 @@
 /* position the icon correctly in file explorer */
-[aria-labelledby="files"].js-navigation-container
-  > .Box-row.js-navigation-item
-  [role="rowheader"] {
+[aria-labelledby="files"].js-navigation-container > .Box-row.js-navigation-item [role="rowheader"] {
   display: flex;
   justify-content: space-between;
 }
