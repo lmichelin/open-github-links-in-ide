@@ -42,8 +42,7 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
   - Click on `Load unpacked`
   - Select the `dist/chrome` folder
 - On Firefox:
-  - Open [about:debugging](about:debugging)
-  - Enable add-on debugging
+  - Open [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox)
   - Click on `Load Temporary Add-on`
   - Select the `dist/firefox/manifest.json` file
 - The extension and the pages using it will be automatically reloaded when you modify the source code
