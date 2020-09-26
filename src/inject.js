@@ -15,7 +15,7 @@ const run = async () => {
       generateUrl: (repo, file, line) =>
         `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`,
     },
-    vscode: {
+    codium: {
       name: "VSCodium",
       icon: "icons/vscode32.png",
       generateUrl: (repo, file, line) =>
