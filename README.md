@@ -15,6 +15,7 @@ This browser extension allows you to open files in your IDE directly from GitHub
 ## Supported IDEs:
 
 - VS Code
+- VSCodium
 - VS Code Insiders
 - PhpStorm
 - IntelliJ IDEA
@@ -48,6 +49,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 - The extension and the pages using it will be automatically reloaded when you modify the source code
 
 ## Changelog
+
+### Version 1.1.6 - Sept 27, 2020
+
+- Add support for VSCodium ([#11](https://github.com/lmichelin/open-github-links-in-ide/pull/11))
 
 ### Version 1.1.5 - June 29, 2020
 
