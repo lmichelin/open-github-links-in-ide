@@ -10,9 +10,7 @@ const ExtensionReloader = require("webpack-extension-reloader")
 
 const generatePlugins = (env, mode, browser) => {
   const plugins = [
-    new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
-    }),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new CopyWebpackPlugin({
       patterns: [
         { from: "icons", to: "icons" },
@@ -24,9 +22,6 @@ const generatePlugins = (env, mode, browser) => {
               version: process.env.npm_package_version,
               ...JSON.parse(content.toString()),
             }
-            if (mode === "development") {
-              manifest.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'"
-            }
             if (mode === "development" || env.test) {
               manifest.content_scripts.forEach(script => {
                 script.all_frames = true // allow cypress tests
@@ -34,9 +29,7 @@ const generatePlugins = (env, mode, browser) => {
             }
             if (browser === "firefox") {
               manifest.browser_specific_settings = {
-                gecko: {
-                  id: process.env.npm_package_geckoId,
-                },
+                gecko: { id: process.env.npm_package_geckoId },
               }
             }
             return Buffer.from(JSON.stringify(manifest))
@@ -66,6 +59,7 @@ const generatePlugins = (env, mode, browser) => {
     plugins.push(
       new ZipWebpackPlugin({
         path: path.join(__dirname, "build"),
+        exclude: [/\.map$/],
         filename: `${browser}.zip`,
       }),
     )
@@ -77,26 +71,27 @@ const generatePlugins = (env, mode, browser) => {
 const generateWebpackConfig = (env, mode, browser) => {
   return {
     stats: "minimal",
+    devtool: mode === "development" ? "inline-source-map" : "source-map",
     watch: mode === "development",
     context: path.join(__dirname, "src"),
-    output: {
-      path: path.join(__dirname, `dist/${browser}`),
-    },
+    output: { path: path.join(__dirname, `dist/${browser}`) },
     entry: {
-      inject: "./inject.js",
-      background: "./background.js",
-      popup: "./popup.js",
+      inject: "./inject.ts",
+      background: "./background.ts",
+      popup: "./popup.ts",
     },
     module: {
       rules: [
-        {
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
-        },
+        { test: /\.ts$/, loader: "ts-loader" },
+        { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       ],
     },
+    resolve: { extensions: [".js", ".ts"] },
     optimization: {
-      minimizer: [new TerserJSPlugin(), new OptimizeCssAssetsPlugin()],
+      minimizer: [
+        new TerserJSPlugin({ sourceMap: true, terserOptions: { output: { comments: false } } }),
+        new OptimizeCssAssetsPlugin(),
+      ],
     },
     plugins: generatePlugins(env, mode, browser),
   }

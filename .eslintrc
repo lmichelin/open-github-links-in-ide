@@ -1,9 +1,26 @@
 {
   "root": true,
-  "extends": ["standard", "plugin:prettier/recommended", "prettier/standard"],
-  "plugins": ["html"],
-  "env": {
-    "browser": true,
-    "webextensions": true
-  }
+  "extends": ["plugin:prettier/recommended"],
+  "parserOptions": { "ecmaVersion": 2018 },
+  "rules": {
+    "eqeqeq": "error",
+    "no-shadow": "error",
+    "no-console": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": { "project": ["./tsconfig.json"] },
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier/@typescript-eslint"
+      ],
+      "rules": {
+        "no-unreachable": "error",
+        "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }]
+      }
+    }
+  ]
 }
