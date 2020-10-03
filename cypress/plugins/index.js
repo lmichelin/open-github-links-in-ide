@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 const path = require("path")
 
 module.exports = on => {

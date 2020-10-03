@@ -18,6 +18,9 @@ jobs:
             - ~/.cache/Cypress
             - node_modules
       - run:
+          name: Check types
+          command: yarn type-check
+      - run:
           name: Lint JS and CSS code
           command: yarn lint
       - run:
