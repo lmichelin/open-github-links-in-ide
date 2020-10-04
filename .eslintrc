@@ -5,6 +5,7 @@
   "rules": {
     "eqeqeq": "error",
     "no-shadow": "error",
+    "no-unreachable": "error",
     "no-console": "warn"
   },
   "overrides": [
@@ -19,6 +20,8 @@
       ],
       "rules": {
         "no-unreachable": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }]
       }
     }
