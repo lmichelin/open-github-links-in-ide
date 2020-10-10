@@ -23,8 +23,16 @@
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
-        "@typescript-eslint/prefer-optional-chain": "error",
-        "@typescript-eslint/prefer-nullish-coalescing": "error"
+        "@typescript-eslint/prefer-optional-chain": "warn",
+        "@typescript-eslint/prefer-nullish-coalescing": "warn",
+        "@typescript-eslint/strict-boolean-expressions": [
+          "error",
+          {
+            "allowNullableBoolean": true,
+            "allowNullableString": true,
+            "allowNullableNumber": true
+          }
+        ]
       }
     }
   ]
