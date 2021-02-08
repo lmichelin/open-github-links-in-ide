@@ -1,4 +1,4 @@
-export type Editor = "vscode" | "vscodium" | "vscode-insiders" | "phpstorm" | "intellij-idea" | "webstorm"
+export type Editor = "vscode" | "vscodium" | "vscode-insiders" | "phpstorm" | "intellij-idea" | "webstorm" | "pycharm"
 
 export type ChromeStorage = {
   localPathForRepositories: string
