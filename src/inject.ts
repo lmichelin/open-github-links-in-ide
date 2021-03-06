@@ -114,7 +114,7 @@ const run = async () => {
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
       // select file blocks
-      const grayDarkLinks = document.querySelectorAll(".file-header a.link-gray-dark[title]")
+      const grayDarkLinks = document.querySelectorAll(".file-header a.Link--primary[title]")
 
       const repo = window.location.href.split("/")[4]
 
