@@ -15,8 +15,7 @@
       "parserOptions": { "project": ["./tsconfig.json"] },
       "extends": [
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "prettier/@typescript-eslint"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
         "no-unreachable": "error",
@@ -25,6 +24,7 @@
         "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
         "@typescript-eslint/prefer-optional-chain": "warn",
         "@typescript-eslint/prefer-nullish-coalescing": "warn",
+        "@typescript-eslint/no-unnecessary-condition": "error",
         "@typescript-eslint/strict-boolean-expressions": [
           "error",
           {
