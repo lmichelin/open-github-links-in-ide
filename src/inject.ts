@@ -166,9 +166,7 @@ const run = async () => {
 
         // add icon on each line number
         if (OPTIONS.showIconOnLineNumbers && fileElement) {
-          const clickableLineNumbersNodes = fileElement.querySelectorAll(
-            "td.blob-num.js-linkable-line-number[data-line-number]",
-          )
+          const clickableLineNumbersNodes = fileElement.querySelectorAll("td.blob-num[data-line-number]")
 
           clickableLineNumbersNodes.forEach(lineNumberNode => {
             // don't add a new icon if icon already exists
@@ -212,7 +210,7 @@ const run = async () => {
 
   if (OPTIONS.showIconOnLineNumbers)
     // hide file numbers on hover
-    styleNode.innerHTML += `.file tr:hover td.blob-num.js-linkable-line-number::before {
+    styleNode.innerHTML += `.file tr:hover td.blob-num::before {
       display: none;
     }`
 

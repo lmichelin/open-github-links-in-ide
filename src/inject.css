@@ -28,12 +28,12 @@
 }
 
 /* position the icon correctly instead of the file number */
-.file td.blob-num.js-linkable-line-number .open-in-ide-icon {
+.file td.blob-num .open-in-ide-icon {
   position: relative;
   bottom: 1px;
 }
 
 /* hide the icon when cursor doesn't hover over the row */
-.file tr:not(:hover) td.blob-num.js-linkable-line-number .open-in-ide-icon {
+.file tr:not(:hover) td.blob-num .open-in-ide-icon {
   display: none;
 }

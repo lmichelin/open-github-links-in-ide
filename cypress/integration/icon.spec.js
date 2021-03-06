@@ -11,15 +11,33 @@ context("VS Code icon", () => {
 
   it("should be visible on file block headers in conversation", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('a[title=".circleci/config.yml"]').should("be.visible")
-    cy.get('span[title="Open config.yml in VS Code at line 27"]').should("be.visible")
+    cy.get('.file-header a[title=".circleci/config.yml"]').should("be.visible")
+    cy.get('.file-header span[title="Open config.yml in VS Code at line 27"]').should("be.visible")
+  })
+
+  it("should be present but hidden on file block lines in conversation", () => {
+    cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 24"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 25"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 26"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 27"]').should("be.hidden")
   })
 
   it("should be visible on file block headers in files changed", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5/files")
-    cy.get("a[title='.circleci/config.yml']").should("be.visible")
-    cy.get("span[title='Open config.yml in VS Code at line 5']").should("be.visible")
-    cy.get("span[title='Open package-lock.json in VS Code']").should("be.visible")
-    cy.get("span[title='Open index.js in VS Code at line 1']").should("be.visible")
+    cy.get(".file-header a[title='.circleci/config.yml']").should("be.visible")
+    cy.get(".file-header span[title='Open config.yml in VS Code at line 5']").should("be.visible")
+    cy.get(".file-header a[title='package-lock.json']").should("be.visible")
+    cy.get(".file-header span[title='Open package-lock.json in VS Code']").should("be.visible")
+    cy.get(".file-header a[title='tests/index.js']").should("be.visible")
+    cy.get(".file-header span[title='Open index.js in VS Code at line 1']").should("be.visible")
+  })
+
+  it("should be present but hidden on file block lines in files changed", () => {
+    cy.visit("/lmichelin/open-github-links-in-ide/pull/5/files")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 2"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 3"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 26"]').should("be.hidden")
+    cy.get('table tr span[title="Open config.yml in VS Code at line 27"]').should("be.hidden")
   })
 })
