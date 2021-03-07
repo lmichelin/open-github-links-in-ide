@@ -57,7 +57,7 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 - Fix file header selector
 - Show editor icon on file block lines in conversation tab
-- Add support for JetBrains editors using built-in web support ([#16](https://github.com/lmichelin/open-github-links-in-ide/pull/16))
+- Add support for JetBrains editors using built-in web server ([#16](https://github.com/lmichelin/open-github-links-in-ide/pull/16))
 
 ### Version 1.1.6 - September 27, 2020
 
