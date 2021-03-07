@@ -53,7 +53,13 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
-### Version 1.1.6 - Sept 27, 2020
+### Version 1.1.7 - March 7, 2021
+
+- Fix file header selector
+- Show editor icon on file block lines in conversation tab
+- Add support for JetBrains editors using built-in web support ([#16](https://github.com/lmichelin/open-github-links-in-ide/pull/16))
+
+### Version 1.1.6 - September 27, 2020
 
 - Add support for VSCodium ([#11](https://github.com/lmichelin/open-github-links-in-ide/pull/11))
 
@@ -61,7 +67,7 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 - Make extension compatible with new GitHub design
 
-### Version 1.1.4 - Oct 23, 2019
+### Version 1.1.4 - October 23, 2019
 
 - Add IntelliJ IDEA support
 
