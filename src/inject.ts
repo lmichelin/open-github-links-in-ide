@@ -1,5 +1,5 @@
 import "./inject.css"
-import { Editor } from "./types"
+import { Editor, EDITORS } from "./types"
 import { getOptions, debounce } from "./utils"
 
 const run = async () => {
@@ -10,73 +10,45 @@ const run = async () => {
     if (OPTIONS.showDebugMessages) console.log.apply(null, ["[OPEN-IN-IDE EXTENSION]", ...args])
   }
 
-  const EDITORS: {
-    [e in Editor]: { name: string; icon: string; openIDE: (repo: string, file: string, line?: string) => string }
+  const EDITOR_OPENERS: {
+    [e in Editor]: (repo: string, file: string, line?: string) => string
   } = {
-    vscode: {
-      name: "VS Code",
-      icon: "icons/vscode32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    vscode: (repo: string, file: string, line?: string) => {
+      const url = `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    vscodium: {
-      name: "VSCodium",
-      icon: "icons/vscodium32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `vscodium://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    vscodium: (repo: string, file: string, line?: string) => {
+      const url = `vscodium://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    "vscode-insiders": {
-      name: "VS Code Insiders",
-      icon: "icons/vscode-insiders32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    "vscode-insiders": (repo: string, file: string, line?: string) => {
+      const url = `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    phpstorm: {
-      name: "PhpStorm",
-      icon: "icons/phpstorm32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    phpstorm: (repo: string, file: string, line?: string) => {
+      const url = `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    "intellij-idea": {
-      name: "IntelliJ IDEA",
-      icon: "icons/intellij-idea32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    "intellij-idea": (repo: string, file: string, line?: string) => {
+      const url = `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    webstorm: {
-      name: "WebStorm",
-      icon: "icons/webstorm32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
-        location.href = url
-        return url
-      }
+    webstorm: (repo: string, file: string, line?: string) => {
+      const url = `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      location.href = url
+      return url
     },
-    pycharm: {
-      name: "Pycharm (Built-in web server)",
-      icon: "icons/intellij-idea32.png",
-      openIDE: (repo: string, file: string, line?: string) => {
-        const url = `http://localhost:63342/api/file?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ? `${line}` : "1"}`
-        const Http = new XMLHttpRequest();
-        Http.open("GET", url)
-        Http.send();
-        return url
-      }
+    "jetbrains-webserver": (repo: string, file: string, line?: string) => {
+      const url = `http://localhost:63342/api/file?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${
+        line ?? "1"
+      }`
+      fetch(url).catch(() => alert(`Unable to open the file.\nIs the built-in web server started on localhost:63342 ?`))
+      return url
     },
   }
 
@@ -89,12 +61,12 @@ const run = async () => {
     editorIconSpanElement.classList.add("open-in-ide-icon")
 
     const editorIconImgElement = document.createElement("img")
-    editorIconImgElement.src = chrome.extension.getURL(EDITORS[OPTIONS.defaultIde].icon)
+    editorIconImgElement.src = chrome.extension.getURL(EDITORS[OPTIONS.defaultIde].getIcon(32))
     editorIconSpanElement.appendChild(editorIconImgElement)
 
     editorIconSpanElement.addEventListener("click", e => {
       e.preventDefault()
-      const editorUrl = EDITORS[OPTIONS.defaultIde].openIDE(repo, file, lineNumber ?? undefined)
+      const editorUrl = EDITOR_OPENERS[OPTIONS.defaultIde](repo, file, lineNumber ?? undefined)
       debug(`Opened ${editorUrl}`)
     })
     return editorIconSpanElement

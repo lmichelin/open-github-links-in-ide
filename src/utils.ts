@@ -1,4 +1,4 @@
-import { ChromeStorage, defaultChromeStorageOptions } from "./types"
+import { ChromeStorage, defaultChromeStorageOptions, Editor, EDITORS } from "./types"
 
 export const debounce = <F extends (...args: never[]) => void>(
   func: F,
@@ -16,14 +16,14 @@ export const getOptions = (): Promise<ChromeStorage> =>
     chrome.storage.sync.get(defaultChromeStorageOptions, options => resolve(options as ChromeStorage)),
   )
 
-export const setExtensionIcon = (defaultIde: string): void => {
+export const setExtensionIcon = (defaultIde: Editor): void => {
   chrome.browserAction.setIcon({
     path: {
-      16: `icons/${defaultIde}16.png`,
-      32: `icons/${defaultIde}32.png`,
-      48: `icons/${defaultIde}48.png`,
-      64: `icons/${defaultIde}64.png`,
-      128: `icons/${defaultIde}128.png`,
+      16: EDITORS[defaultIde].getIcon(16),
+      32: EDITORS[defaultIde].getIcon(32),
+      48: EDITORS[defaultIde].getIcon(48),
+      64: EDITORS[defaultIde].getIcon(64),
+      128: EDITORS[defaultIde].getIcon(128),
     },
   })
 }

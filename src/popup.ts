@@ -1,4 +1,5 @@
 import "./milligram.css"
+import { Editor } from "./types"
 import { setExtensionIcon, getOptions } from "./utils"
 
 const run = async () => {
@@ -27,7 +28,7 @@ const run = async () => {
 
   // add EventListener for defaultIde
   defaultIdeSelectElement.addEventListener("change", event => {
-    const defaultIde = (event.target as HTMLSelectElement).value
+    const defaultIde = (event.target as HTMLSelectElement).value as Editor
     chrome.storage.sync.set({ defaultIde })
     setExtensionIcon(defaultIde)
   })
