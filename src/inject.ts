@@ -210,7 +210,7 @@ const run = async () => {
 
   if (OPTIONS.showIconOnLineNumbers)
     // hide file numbers on hover
-    styleNode.innerHTML += `.file tr:hover td.blob-num::before {
+    styleNode.innerHTML += `.file tr:hover > td.blob-num::before {
       display: none;
     }`
 
