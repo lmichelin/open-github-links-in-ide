@@ -53,6 +53,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.9 - March 20, 2021
+
+- Update VSCodium icon
+
 ### Version 1.1.8 - March 14, 2021
 
 - Fix bug: all line numbers where hidden when cursor was over a "Suggested changes" section in the "files changed" tab
