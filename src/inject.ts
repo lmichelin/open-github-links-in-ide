@@ -14,32 +14,32 @@ const run = async () => {
     [e in Editor]: (repo: string, file: string, line?: string) => string
   } = {
     vscode: (repo: string, file: string, line?: string) => {
-      const url = `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `vscode://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line ?? "1"}`
       location.href = url
       return url
     },
     vscodium: (repo: string, file: string, line?: string) => {
-      const url = `vscodium://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `vscodium://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line ?? "1"}`
       location.href = url
       return url
     },
     "vscode-insiders": (repo: string, file: string, line?: string) => {
-      const url = `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line ?? "1"}`
       location.href = url
       return url
     },
     phpstorm: (repo: string, file: string, line?: string) => {
-      const url = `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `phpstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ?? "1"}`
       location.href = url
       return url
     },
     "intellij-idea": (repo: string, file: string, line?: string) => {
-      const url = `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `idea://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ?? "1"}`
       location.href = url
       return url
     },
     webstorm: (repo: string, file: string, line?: string) => {
-      const url = `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}${line ? `:${line}` : ""}`
+      const url = `webstorm://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ?? "1"}`
       location.href = url
       return url
     },
