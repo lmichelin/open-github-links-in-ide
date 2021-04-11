@@ -3,7 +3,7 @@
   "name": "Open GitHub in IDE",
   "author": "Louis-Marie Michelin",
   "homepage_url": "https://github.com/lmichelin/open-github-links-in-ide",
-  "permissions": ["storage"],
+  "permissions": ["storage", "*://localhost/*"],
   "content_scripts": [
     {
       "run_at": "document_end",
