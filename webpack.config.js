@@ -31,6 +31,9 @@ const generatePlugins = (env, mode, browser) => {
               manifest.browser_specific_settings = {
                 gecko: { id: process.env.npm_package_geckoId },
               }
+              // Allow extension to fetch localhost URLs on Firefox (permission not needed on Chrome)
+              // https://github.com/github/fetch/issues/310#issuecomment-454662463
+              manifest.permissions.push("*://localhost/*")
             }
             return Buffer.from(JSON.stringify(manifest))
           },
