@@ -12,6 +12,15 @@ This browser extension allows you to open files in your IDE directly from GitHub
 	<img src="screenshots/readme.png">
 <p>
 
+## Getting started
+
+Once the extension is installed:
+
+- Click on the extension icon to open the settings popup
+- Set the local path where GitHub repositories are cloned on your computer
+- Select the IDE you want to use to open GitHub links
+- Reload GitHub and start using the extension
+
 ## Supported IDEs:
 
 - VS Code
@@ -30,6 +39,8 @@ PhpStorm & IntelliJ IDEA support is native on MacOS, but on Linux and Windows yo
 I have not tested WebStorm support yet, feedbacks are welcome!
 
 You can also use the built-in web server of any JetBrains editor (IDEA, WebStorm, PhpStorm, WebStorm, ...) instead of the url handler. For that you need to install the PHP plugin. See [here](https://www.jetbrains.com/help/idea/php-built-in-web-server.html) for more information. The built-in web server must be started on port 63342.
+
+> To disable JetBrains warning "_'file' API is requested. Do you trust unknown host?_", you can go to `File > Settings > Build, Execution, Deployment > Debugger` and Check the _Allow unsigned requests_ in the _Built-in Server_ section.
 
 ## New features & bugs
 
