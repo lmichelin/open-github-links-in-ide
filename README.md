@@ -53,6 +53,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.11 - April 18, 2021
+
+- Add permission required on Firefox to use JetBrains built-in web server ([#20](https://github.com/lmichelin/open-github-links-in-ide/pull/20))
+
 ### Version 1.1.10 - April 5, 2021
 
 - Fix an issue with JetBrains editors ([#17](https://github.com/lmichelin/open-github-links-in-ide/issues/17))
