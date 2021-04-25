@@ -35,6 +35,7 @@ context("VS Code icon", () => {
 
   it("should be present but hidden when not hovering on file block lines in files changed", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5/files")
+    cy.get('.file-header a[title=".circleci/config.yml"]').scrollIntoView()
     cy.get('table tr span[title="Open config.yml in VS Code at line 2"]').should("be.hidden")
     cy.get('table tr span[title="Open config.yml in VS Code at line 3"]').should("be.hidden")
     cy.get('table tr span[title="Open config.yml in VS Code at line 26"]').should("be.hidden")
