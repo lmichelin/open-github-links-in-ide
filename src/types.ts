@@ -51,8 +51,6 @@ export type ChromeStorage = {
   showDebugMessages: boolean
 }
 
-export type ChromeStorageKey = keyof ChromeStorage
-
 export const defaultChromeStorageOptions: ChromeStorage = {
   localPathForRepositories: "/home/changeMe",
   defaultIde: "vscode",
@@ -61,5 +59,3 @@ export const defaultChromeStorageOptions: ChromeStorage = {
   showIconOnLineNumbers: true,
   showDebugMessages: false,
 }
-
-export const chromeStorageKeys = Object.keys(defaultChromeStorageOptions) as ChromeStorageKey[]
