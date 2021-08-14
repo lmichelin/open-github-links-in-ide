@@ -8,8 +8,8 @@
     "lint:fix": "eslint --max-warnings 0 --fix --ignore-path .gitignore . ; prettier --ignore-path .gitignore --write **/*.{html,css,md,json,yml}",
     "type-check": "tsc --noEmit",
     "cypress:open": "cypress open",
-    "test:chrome": "cypress run --browser chrome",
-    "test:firefox": "cypress run --browser firefox",
+    "test:chrome": "cypress run --headed --browser chrome",
+    "test:firefox": "cypress run --headed --browser firefox",
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production",
     "build:test": "webpack --mode=production --env test"
