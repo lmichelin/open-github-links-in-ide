@@ -1,16 +1,14 @@
 const path = require("path")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const TerserJSPlugin = require("terser-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const ZipWebpackPlugin = require("zip-webpack-plugin")
-const ExtensionReloader = require("webpack-extension-reloader")
+const ExtReloader = require("webpack-ext-reloader")
 
 const generatePlugins = (env, mode, browser) => {
   const plugins = [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new CopyWebpackPlugin({
       patterns: [
         { from: "icons", to: "icons" },
@@ -50,7 +48,7 @@ const generatePlugins = (env, mode, browser) => {
 
   if (mode === "development") {
     plugins.push(
-      new ExtensionReloader({
+      new ExtReloader({
         port: browser === "chrome" ? 9090 : 9091,
         reloadPage: true,
         manifest: "./src/manifest.json",
@@ -77,7 +75,7 @@ const generateWebpackConfig = (env, mode, browser) => {
     devtool: mode === "development" ? "inline-source-map" : "source-map",
     watch: mode === "development",
     context: path.join(__dirname, "src"),
-    output: { path: path.join(__dirname, `dist/${browser}`) },
+    output: { path: path.join(__dirname, `dist/${browser}`), filename: "[name].js", clean: true },
     entry: {
       inject: "./inject.ts",
       background: "./background.ts",
@@ -91,10 +89,7 @@ const generateWebpackConfig = (env, mode, browser) => {
     },
     resolve: { extensions: [".js", ".ts"] },
     optimization: {
-      minimizer: [
-        new TerserJSPlugin({ sourceMap: true, terserOptions: { output: { comments: false } } }),
-        new OptimizeCssAssetsPlugin(),
-      ],
+      minimizer: [new TerserJSPlugin({ terserOptions: { output: { comments: false } } }), new CssMinimizerPlugin()],
     },
     plugins: generatePlugins(env, mode, browser),
   }
