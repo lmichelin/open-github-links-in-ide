@@ -1,4 +1,4 @@
-import "./milligram.css"
+import "milligram"
 import { Editor } from "./types"
 import { setExtensionIcon, getOptions } from "./utils"
 

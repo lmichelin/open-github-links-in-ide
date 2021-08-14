@@ -24,6 +24,9 @@
     "url": "https://github.com/lmichelin/open-github-links-in-ide/issues"
   },
   "homepage": "https://github.com/lmichelin/open-github-links-in-ide#readme",
+  "dependencies": {
+    "milligram": "^1.4.1"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.154",
     "@typescript-eslint/eslint-plugin": "^4.29.1",
