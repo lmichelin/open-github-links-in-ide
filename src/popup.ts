@@ -1,4 +1,4 @@
-import "./milligram.css"
+import "milligram"
 import { Editor } from "./types"
 import { setExtensionIcon, getOptions } from "./utils"
 
@@ -23,13 +23,13 @@ const run = async () => {
   localPathInputElement.addEventListener("input", event => {
     let localPathForRepositories = (event.target as HTMLInputElement).value
     if (localPathForRepositories.endsWith("/")) localPathForRepositories = localPathForRepositories.slice(0, -1)
-    chrome.storage.sync.set({ localPathForRepositories })
+    void chrome.storage.sync.set({ localPathForRepositories })
   })
 
   // add EventListener for defaultIde
   defaultIdeSelectElement.addEventListener("change", event => {
     const defaultIde = (event.target as HTMLSelectElement).value as Editor
-    chrome.storage.sync.set({ defaultIde })
+    void chrome.storage.sync.set({ defaultIde })
     setExtensionIcon(defaultIde)
   })
 
@@ -41,7 +41,7 @@ const run = async () => {
     // add EventListener for checkbox
     checkboxElement.addEventListener("change", event => {
       const eventTarget = event.target as HTMLInputElement
-      chrome.storage.sync.set({ [eventTarget.id]: eventTarget.checked })
+      void chrome.storage.sync.set({ [eventTarget.id]: eventTarget.checked })
     })
   })
   ;(document.getElementById("version") as HTMLSpanElement).innerText = chrome.runtime.getManifest().version
