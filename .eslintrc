@@ -15,7 +15,8 @@
       "parserOptions": { "project": ["./tsconfig.json"] },
       "extends": [
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier"
       ],
       "rules": {
         "no-unreachable": "error",
