@@ -1,4 +1,6 @@
-import "milligram"
+import "./popup.css"
+import "./assets/entry"
+
 import { Editor } from "./types"
 import { setExtensionIcon, getOptions } from "./utils"
 

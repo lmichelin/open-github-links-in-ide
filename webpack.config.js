@@ -1,3 +1,4 @@
+const webpack = require("webpack")
 const path = require("path")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const TerserJSPlugin = require("terser-webpack-plugin")
@@ -44,6 +45,12 @@ const generatePlugins = (env, mode, browser) => {
       filename: "popup.html",
       chunks: ["popup"],
     }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      "bootstrap-select": "bootstrap-select",
+    }),
   ]
 
   if (mode === "development") {
@@ -79,12 +86,16 @@ const generateWebpackConfig = (env, mode, browser) => {
     entry: {
       inject: "./inject.ts",
       background: "./background.ts",
-      popup: "./popup.ts",
+      popup: ["./popup.ts", "./popup.js"],
     },
     module: {
       rules: [
         { test: /\.ts$/, loader: "ts-loader" },
         { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
+        {
+          test: /\.s[ac]ss$/i,
+          use: ["style-loader", "css-loader", "sass-loader"],
+        },
       ],
     },
     resolve: { extensions: [".js", ".ts"] },

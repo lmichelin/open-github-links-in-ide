@@ -1,0 +1,23 @@
+@import "./../css/variables.css";
+@import "./vendors/main.scss";
+
+body {
+  padding: var(--body-v-padding) var(--body-h-padding);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  filter: brightness(0.85);
+}
+
+.bootstrap-select button, .form-control:focus {
+  border: $input-border-width solid $input-border-color;
+}
+
+.bootstrap-select > select.mobile-device:focus + .dropdown-toggle, .bootstrap-select .dropdown-toggle:focus {
+  outline: 0 !important;
+  outline-offset: 0;
+}
