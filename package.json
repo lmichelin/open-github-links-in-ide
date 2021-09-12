@@ -25,7 +25,13 @@
   },
   "homepage": "https://github.com/lmichelin/open-github-links-in-ide#readme",
   "dependencies": {
-    "milligram": "^1.4.1"
+    "bootstrap": "4.6.0",
+    "bootstrap-select": "^1.13.18",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "sass": "^1.39.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.154",
