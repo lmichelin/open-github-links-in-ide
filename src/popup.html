@@ -1,35 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title></title>
   </head>
 
-  <body style="min-width: 500px">
-    <h3>Open GitHub links in your IDE</h3>
+  <body>
+    <div class="container">
+      <div class="row">
+        <form>
+          <h3>Open GitHub links in IDE</h3>
+          <div class="form-group">
+            <label for="localPathForRepositories"
+              >Local path where GitHub repositories are cloned on your computer:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="localPathForRepositories"
+              placeholder="e.g.: /home/username/github"
+            />
+            <label for="defaultIde">Default IDE:</label>
+            <select id="defaultIde" data-show-content="true" class="form-control">
+              <option value="vscode" data-content="<img src='icons/vscode16.png'/> Visual Studio Code">
+                Visual Studio Code
+              </option>
+              <option value="vscodium" data-content="<img src='icons/vscodium16.png'/> VSCodium">VSCodium</option>
+              <option
+                value="vscode-insiders"
+                data-content="<img src='icons/vscode-insiders16.png'/> Visual Studio Code Insiders"
+              >
+                Visual Studio Code Insiders
+              </option>
+              <option value="phpstorm" data-content="<img src='icons/phpstorm16.png'/> PhpStorm">PhpStorm</option>
 
-    <label>Local path where GitHub repositories are cloned on your computer:</label>
-    <input type="text" id="localPathForRepositories" />
-    <label>The IDE you want to use to open GitHub links:</label>
-    <select id="defaultIde">
-      <option value="vscode">Visual Studio Code</option>
-      <option value="vscodium">VSCodium</option>
-      <option value="vscode-insiders">Visual Studio Code Insiders</option>
-      <option value="phpstorm">PhpStorm</option>
-      <option value="intellij-idea">IntelliJ IDEA</option>
-      <option value="webstorm">WebStorm</option>
-      <option value="jetbrains-webserver">JetBrains editor (using built-in web server)</option>
-    </select>
-    <label>Where to show the icon ?</label>
-    <input type="checkbox" id="showIconInFileTree" /> Show icon in file tree<br />
-    <input type="checkbox" id="showIconOnFileBlockHeaders" /> Show icon on file block headers<br />
-    <input type="checkbox" id="showIconOnLineNumbers" /> Show icon on line numbers<br />
-    <label>Debugging</label>
-    <input type="checkbox" id="showDebugMessages" /> Show debug messages in console<br />
-    <br />
-    Reload GitHub to apply changes
-    <div style="float: right">
-      Version <span id="version"></span> •
-      <a target="_blank" href="https://github.com/lmichelin/open-github-links-in-ide#changelog">Changelog</a>
+              <option value="intellij-idea" data-content="<img src='icons/intellij-idea16.png'/> IntelliJ IDEA">
+                IntelliJ IDEA
+              </option>
+              <option value="webstorm" data-content="<img src='icons/webstorm16.png'/> WebStorm">WebStorm</option>
+              <option
+                value="jetbrains-webserver"
+                data-content="<img src='icons/jetbrains16.png'/> JetBrains editor (using built-in web server)"
+              >
+                JetBrains editor (using built-in web server)
+              </option>
+              <option
+                value="jetbrains-toolbox-phpstorm"
+                data-content="<img src='icons/phpstorm16.png'/> JetBrains Toolbox PhpStorm"
+              >
+                JetBrains Toolbox PhpStorm
+              </option>
+              <option
+                value="jetbrains-toolbox-webstorm"
+                data-content="<img src='icons/webstorm16.png'/> JetBrains Toolbox WebStorm"
+              >
+                JetBrains Toolbox PhpStorm
+              </option>
+            </select>
+          </div>
+
+          <h4>Where to show the icon?</h4>
+          <div class="form-group">
+            <input type="checkbox" id="showIconInFileTree" />
+            <label for="showIconInFileTree"> Show icon in file tree</label>
+            <br />
+            <input type="checkbox" id="showIconOnFileBlockHeaders" />
+            <label for="showIconOnFileBlockHeaders"> Show icon on file block headers</label>
+            <br />
+            <input type="checkbox" id="showIconOnLineNumbers" />
+            <label for="showIconOnLineNumbers"> Show icon on line numbers</label>
+          </div>
+          <h4>Debugging</h4>
+          <div class="form-group">
+            <input type="checkbox" id="showDebugMessages" />
+            <label for="showDebugMessages"> Show debug messages in console</label>
+          </div>
+        </form>
+      </div>
+      <div class="row d-flex justify-content-between">
+        <small> Reload page to apply changes </small>
+        <small>
+          Version <span id="version"></span> &bull;
+          <a target="_blank" href="https://github.com/lmichelin/open-github-links-in-ide#changelog">Changelog</a>
+        </small>
+      </div>
     </div>
   </body>
 </html>
