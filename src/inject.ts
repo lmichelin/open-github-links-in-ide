@@ -50,6 +50,30 @@ const run = async () => {
       fetch(url).catch(() => alert(`Unable to open the file.\nIs the built-in web server started on localhost:63342 ?`))
       return url
     },
+    "jetbrains-toolbox-phpstorm": (repo: string, file: string, line?: string) => {
+      if (typeof line === "string") {
+        let decreasedLine: number = parseInt(line)
+        const url = `jetbrains://php-storm/navigate/reference?project=${repo}&path=${file}:${decreasedLine--}`
+        location.href = url
+        return url
+      }
+
+      const url = `jetbrains://php-storm/navigate/reference?project=${repo}&path=${file}:0`
+      location.href = url
+      return url
+    },
+    "jetbrains-toolbox-webstorm": (repo: string, file: string, line?: string) => {
+      if (typeof line === "string") {
+        let decreasedLine: number = parseInt(line)
+        const url = `jetbrains://web-storm/navigate/reference?project=${repo}&path=${file}:${decreasedLine--}`
+        location.href = url
+        return url
+      }
+
+      const url = `jetbrains://web-storm/navigate/reference?project=${repo}&path=${file}:0`
+      location.href = url
+      return url
+    },
   }
 
   const generateIconElement = (repo: string, file: string, lineNumber?: string | null) => {
@@ -84,14 +108,15 @@ const run = async () => {
     // -------------------------------
 
     if (OPTIONS.showIconInFileTree) {
-      const files = document.querySelectorAll(
-        '[aria-labelledby="files"].js-navigation-container > .Box-row.js-navigation-item .css-truncate',
-      )
+      const rows = document.querySelectorAll('[aria-labelledby="files"].js-navigation-container > div.Box-row')
 
-      files.forEach(fileElement => {
-        // don't add a new icon if icon already exists
+      rows.forEach(rowElement => {
+        // ship icon for directories
+        if (rowElement.querySelector('div.Box-row svg[aria-label="Directory"]')) return
+
+        const fileElement = rowElement.querySelector('div[role="rowheader"] .css-truncate')
+        if (!fileElement) return
         if (fileElement.parentNode?.querySelector(".open-in-ide-icon")) return
-
         const fileUrl = fileElement.querySelector("a")?.getAttribute("href")
         if (!fileUrl || !filePathRegExp.test(fileUrl)) return
 

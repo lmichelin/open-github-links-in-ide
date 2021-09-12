@@ -6,6 +6,8 @@ export type Editor =
   | "intellij-idea"
   | "webstorm"
   | "jetbrains-webserver"
+  | "jetbrains-toolbox-phpstorm"
+  | "jetbrains-toolbox-webstorm"
 
 type IconSize = 16 | 32 | 48 | 64 | 128
 
@@ -40,6 +42,14 @@ export const EDITORS: {
     name: "JetBrains",
     getIcon: (size: IconSize) => `icons/jetbrains${size}.png`,
   },
+  "jetbrains-toolbox-phpstorm": {
+    name: "PhpStorm",
+    getIcon: (size: IconSize) => `icons/phpstorm${size}.png`,
+  },
+  "jetbrains-toolbox-webstorm": {
+    name: "WebStorm",
+    getIcon: (size: IconSize) => `icons/webstorm${size}.png`,
+  },
 }
 
 export type ChromeStorage = {
@@ -52,7 +62,7 @@ export type ChromeStorage = {
 }
 
 export const defaultChromeStorageOptions: ChromeStorage = {
-  localPathForRepositories: "/home/changeMe",
+  localPathForRepositories: "",
   defaultIde: "vscode",
   showIconInFileTree: true,
   showIconOnFileBlockHeaders: true,
