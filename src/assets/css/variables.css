@@ -1,0 +1,30 @@
+:root {
+  --main-background-color: #fff;
+  --main-color: #1f2326;
+  --title: var(--main-color);
+  --list-hover-background-color: #ebf6ff;
+  --selected-item-background-color: #d4edff;
+  --selected-item-border-color: #80c6ff;
+  --item-border-color: #b8d1e5;
+  --link-color: #0f5b99;
+  --link-hover-color: #ff008c;
+
+  --body-v-padding: 1rem;
+  --body-h-padding: 1rem;
+  --icon-size: 3rem;
+  --tool-action-v-padding: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-background-color: #23272b;
+    --main-color: #bbb;
+    --title: #fff;
+    --list-hover-background-color: #0b1a26;
+    --selected-item-background-color: #062640;
+    --selected-item-border-color: #70b1e6;
+    --item-border-color: #406380;
+    --link-color: #70b1e6;
+    --link-hover-color: #ff008c;
+  }
+}
