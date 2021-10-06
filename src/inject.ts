@@ -114,7 +114,7 @@ const run = async () => {
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
       // select file blocks
-      const grayDarkLinks = document.querySelectorAll(".file-header a.Link--primary[title]")
+      const grayDarkLinks = document.querySelectorAll(".file a.Link--primary[title]")
 
       const repo = window.location.href.split("/")[4]
 
@@ -129,28 +129,23 @@ const run = async () => {
         if (!file) return
 
         let lineNumberForFileBlock
-        let fileElement
+        const fileElement = linkElement.closest(".file")
 
-        try {
-          // in discussion
-          fileElement = linkElement.parentNode?.parentNode as Element | undefined
-          if (!fileElement?.classList.contains("file")) throw Error()
-          const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
-          // get last line number
-          lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
-        } catch (err1) {
-          try {
-            // in changed files
-            fileElement = linkElement.parentNode?.parentNode?.parentNode as Element | undefined
-            if (!fileElement?.classList.contains("file")) throw Error()
+        if (fileElement) {
+          if (fileElement.classList.contains("js-comment-container")) {
+            // in discussion
+            const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
+            // get last line number
+            lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
+          } else {
             const firstLineNumberNode = fileElement.querySelector(
               "td.blob-num-deletion[data-line-number], td.blob-num-addition[data-line-number]",
             )
             // get first line number
             lineNumberForFileBlock = firstLineNumberNode?.getAttribute("data-line-number")
-          } catch (err2) {
-            // no line number available
           }
+        } else {
+          // no line number available
         }
 
         if (
