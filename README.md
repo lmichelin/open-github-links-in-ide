@@ -64,6 +64,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.1.12 - October 4, 2021
+
+- Fix bug: icon was not showing on line numbers after an update on GitHub side
+
 ### Version 1.1.11 - April 18, 2021
 
 - Add permission required on Firefox to use JetBrains built-in web server ([#20](https://github.com/lmichelin/open-github-links-in-ide/pull/20))
