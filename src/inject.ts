@@ -135,6 +135,9 @@ const run = async () => {
           if (fileElement.classList.contains("js-comment-container")) {
             // in discussion
             const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
+
+            if (lineNumberNodes.length === 0) return // length can be equal to zero in case of resolved comment for example
+
             // get last line number
             lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
           } else {
