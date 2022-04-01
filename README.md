@@ -30,6 +30,7 @@ Once the extension is installed:
 - IntelliJ IDEA
 - Any JetBrains editor (using built-in web server)
 - WebStorm (not tested yet)
+- GoLand
 
 PhpStorm & IntelliJ IDEA support is native on MacOS, but on Linux and Windows you need to install an url handler (see [this answer](https://stackoverflow.com/a/56066943/104891)):
 
