@@ -8,6 +8,7 @@ export type Editor =
   | "phpstorm"
   | "intellij-idea"
   | "webstorm"
+  | "goland"
   | "jetbrains-webserver"
 
 type IconSize = 16 | 32 | 48 | 64 | 128
@@ -50,6 +51,10 @@ export const EDITORS: {
   webstorm: {
     name: "WebStorm",
     getIcon: (size: IconSize) => `icons/webstorm${size}.png`,
+  },
+  goland: {
+    name: "GoLand",
+    getIcon: (size: IconSize) => `icons/goland${size}.png`,
   },
   "jetbrains-webserver": {
     name: "JetBrains",
