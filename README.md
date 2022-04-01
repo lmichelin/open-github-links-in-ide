@@ -30,6 +30,7 @@ Once the extension is installed:
 - IntelliJ IDEA
 - Any JetBrains editor (using built-in web server)
 - WebStorm (not tested yet)
+- GoLand
 
 WSL with the Ubuntu distribution is also supported on VS Code, VSCodium and VS Code Insiders for Windows.
 
