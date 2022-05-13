@@ -82,6 +82,42 @@ const run = async () => {
     // -------------------------------
     // repository content (files list)
     // -------------------------------
+    {
+      const files = document.querySelectorAll(
+        ".js-comment > .TimelineItem > .TimelineItem-body > details > summary .Link--primary",
+      )
+
+      files.forEach(fileElement => {
+        // don't add a new icon if icon already exists
+        if (fileElement.parentNode?.querySelector(".open-in-ide-icon")) return
+
+        const href = fileElement.getAttribute("href")
+        if (!href) return
+
+        const repo = /\/([^/]+)\/([^/]+)/.exec(href)?.[2]
+        const file = fileElement.textContent
+        if (!repo || !file) return
+
+        // in discussion
+        const lineNumberNodes =
+          fileElement.parentNode?.parentNode?.parentNode?.parentNode?.querySelectorAll("td[data-line-number]")
+
+        if (!lineNumberNodes?.length) return // length can be equal to zero in case of resolved comment for example
+
+        // get last line number
+        const lineNumberForFileBlock = lineNumberNodes[lineNumberNodes.length - 1].getAttribute("data-line-number")
+
+        const editorIconElement = generateIconElement(repo, file, lineNumberForFileBlock)
+        editorIconElement.classList.add("ml-2")
+
+        fileElement.parentNode?.append(editorIconElement)
+        addedIconsCounter++
+      })
+    }
+
+    // -------------------------------
+    // repository content (files list)
+    // -------------------------------
 
     if (OPTIONS.showIconInFileTree) {
       const files = document.querySelectorAll(
