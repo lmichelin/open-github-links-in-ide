@@ -11,9 +11,13 @@
 }
 
 /* center vertically the icon and show pointer */
+.open-in-ide-icon {
+  display: flex;
+  align-items: center;
+}
+
 .open-in-ide-icon > img {
   cursor: pointer;
-  vertical-align: middle;
   height: 16px;
 }
 
@@ -28,12 +32,12 @@
 }
 
 /* position the icon correctly instead of the file number */
-.file td.blob-num .open-in-ide-icon {
-  position: relative;
-  bottom: 1px;
+td.blob-num .open-in-ide-icon {
+  justify-content: flex-end;
+  margin-top: 1px;
 }
 
 /* hide the icon when cursor doesn't hover over the row */
-.file tr:not(:hover) td.blob-num .open-in-ide-icon {
+tr:not(:hover) td.blob-num .open-in-ide-icon {
   display: none;
 }

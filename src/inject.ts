@@ -109,16 +109,23 @@ const run = async () => {
     }
 
     // --------------------------------------------
-    // file links (file changes view & discussions)
+    // file links (files changed view & discussions)
     // --------------------------------------------
 
     if (OPTIONS.showIconOnFileBlockHeaders || OPTIONS.showIconOnLineNumbers) {
+      let inFilesChangedView = true
+
       // select file blocks
-      const grayDarkLinks = document.querySelectorAll(".file a.Link--primary[title]")
+      let primaryLinks = document.querySelectorAll(".file a.Link--primary[title]") // in files changed view
+
+      if (!primaryLinks.length) {
+        primaryLinks = document.querySelectorAll(".js-comment-container a.Link--primary[title]") // in discussion
+        inFilesChangedView = false
+      }
 
       const repo = window.location.href.split("/")[4]
 
-      grayDarkLinks.forEach(linkElement => {
+      primaryLinks.forEach(linkElement => {
         const file = linkElement
           .getAttribute("title")
           ?.split("→") // when file was renamed
@@ -129,10 +136,11 @@ const run = async () => {
         if (!file) return
 
         let lineNumberForFileBlock
-        const fileElement = linkElement.closest(".file")
+
+        const fileElement = linkElement.closest(inFilesChangedView ? ".file" : ".js-comment-container")
 
         if (fileElement) {
-          if (fileElement.classList.contains("js-comment-container")) {
+          if (!inFilesChangedView) {
             // in discussion
             const lineNumberNodes = fileElement.querySelectorAll("td[data-line-number]")
 
@@ -174,6 +182,7 @@ const run = async () => {
 
             const editorIconElement = generateIconElement(repo, file, lineNumber)
 
+            lineNumberNode.classList.add("js-open-in-ide-icon-added")
             lineNumberNode.appendChild(editorIconElement)
             addedIconsCounter++
           })
@@ -200,15 +209,9 @@ const run = async () => {
   // inject CSS rules for GitHub elements
   const styleNode = document.createElement("style")
 
-  if (OPTIONS.showIconInFileTree)
-    // resize file names to leave some space for the icon
-    styleNode.innerHTML += `.files.js-navigation-container > tbody tr.js-navigation-item .content .css-truncate {
-      max-width: calc(100% - 22px);
-    }`
-
   if (OPTIONS.showIconOnLineNumbers)
     // hide file numbers on hover
-    styleNode.innerHTML += `.file tr:hover > td.blob-num::before {
+    styleNode.innerHTML += `tr:hover > td.js-open-in-ide-icon-added::before {
       display: none;
     }`
 
