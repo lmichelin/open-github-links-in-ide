@@ -66,6 +66,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ### Version 1.1.13 - November 22, 2021
 
+- Fix bug: icon was not showing in discussions after an update on GitHub side
+
+### Version 1.1.13 - November 22, 2021
+
 - Fix bug: extension was crashing on pull requests containing resolved conversations
 
 ### Version 1.1.12 - October 4, 2021
