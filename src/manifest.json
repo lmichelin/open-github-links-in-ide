@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Open GitHub in IDE",
   "author": "Louis-Marie Michelin",
   "homepage_url": "https://github.com/lmichelin/open-github-links-in-ide",
@@ -13,10 +13,9 @@
     }
   ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html"
   },
   "icons": {
@@ -26,5 +25,10 @@
     "64": "icons/github64.png",
     "128": "icons/github128.png"
   },
-  "web_accessible_resources": ["icons/*.png"]
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png"],
+      "matches": ["https://github.com/*"]
+    }
+  ]
 }

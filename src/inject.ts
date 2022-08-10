@@ -82,7 +82,7 @@ const run = async () => {
     editorIconSpanElement.classList.add("open-in-ide-icon")
 
     const editorIconImgElement = document.createElement("img")
-    editorIconImgElement.src = chrome.extension.getURL(EDITORS[OPTIONS.defaultIde].getIcon(32))
+    editorIconImgElement.src = chrome.runtime.getURL(EDITORS[OPTIONS.defaultIde].getIcon(32))
     editorIconSpanElement.appendChild(editorIconImgElement)
 
     editorIconSpanElement.addEventListener("click", e => {

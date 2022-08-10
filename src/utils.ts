@@ -17,7 +17,7 @@ export const getOptions = (): Promise<ChromeStorage> =>
   )
 
 export const setExtensionIcon = (defaultIde: Editor): void => {
-  chrome.browserAction.setIcon({
+  chrome.action.setIcon({
     path: {
       16: EDITORS[defaultIde].getIcon(16),
       32: EDITORS[defaultIde].getIcon(32),
