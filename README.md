@@ -31,6 +31,8 @@ Once the extension is installed:
 - Any JetBrains editor (using built-in web server)
 - WebStorm (not tested yet)
 
+WSL with the Ubuntu distribution is also supported on VS Code, VSCodium and VS Code Insiders for Windows.
+
 PhpStorm & IntelliJ IDEA support is native on MacOS, but on Linux and Windows you need to install an url handler (see [this answer](https://stackoverflow.com/a/56066943/104891)):
 
 - Linux: https://github.com/sanduhrs/phpstorm-url-handler
@@ -64,7 +66,14 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
-### Version 1.1.13 - November 22, 2021
+### Version 1.2.0 - August 11,2022
+
+- Add support for VS Code + WSL (Ubuntu) on Windows
+- Migrate to manifest V3 on Chrome
+- Fix bug: icon was not showing in file tree after an update on GitHub side
+- Fix bug: icon was not showing in the "files changed" tab after clicking on it, a page reload was required ([#35](https://github.com/lmichelin/open-github-links-in-ide/issues/35))
+
+### Version 1.1.14 - June 8, 2022
 
 - Fix bug: icon was not showing in discussions after an update on GitHub side
 
