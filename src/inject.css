@@ -22,7 +22,7 @@
 }
 
 /* show the icon when cursor hovers over the row */
-.js-navigation-item.navigation-focus .open-in-ide-icon-file-explorer {
+.js-navigation-item:hover .open-in-ide-icon-file-explorer {
   visibility: unset;
 }
 
