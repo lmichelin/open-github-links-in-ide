@@ -1,7 +1,10 @@
 export type Editor =
   | "vscode"
+  | "vscode-wsl"
   | "vscodium"
+  | "vscodium-wsl"
   | "vscode-insiders"
+  | "vscode-insiders-wsl"
   | "phpstorm"
   | "intellij-idea"
   | "webstorm"
@@ -16,12 +19,24 @@ export const EDITORS: {
     name: "VS Code",
     getIcon: (size: IconSize) => `icons/vscode${size}.png`,
   },
+  "vscode-wsl": {
+    name: "VS Code [WSL]",
+    getIcon: (size: IconSize) => `icons/vscode${size}.png`,
+  },
   vscodium: {
     name: "VSCodium",
     getIcon: (size: IconSize) => `icons/vscodium${size}.png`,
   },
+  "vscodium-wsl": {
+    name: "VSCodium [WSL]",
+    getIcon: (size: IconSize) => `icons/vscodium${size}.png`,
+  },
   "vscode-insiders": {
     name: "VS Code Insiders",
+    getIcon: (size: IconSize) => `icons/vscode-insiders${size}.png`,
+  },
+  "vscode-insiders-wsl": {
+    name: "VS Code Insiders [WSL]",
     getIcon: (size: IconSize) => `icons/vscode-insiders${size}.png`,
   },
   phpstorm: {

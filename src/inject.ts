@@ -18,13 +18,34 @@ const run = async () => {
       location.href = url
       return url
     },
+    "vscode-wsl": (repo: string, file: string, line?: string) => {
+      const url = `vscode://vscode-remote/wsl+Ubuntu/${OPTIONS.localPathForRepositories}/${repo}/${file}:${
+        line ?? "1"
+      }:1`
+      location.href = url
+      return url
+    },
     vscodium: (repo: string, file: string, line?: string) => {
       const url = `vscodium://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line ?? "1"}`
       location.href = url
       return url
     },
+    "vscodium-wsl": (repo: string, file: string, line?: string) => {
+      const url = `vscodium://vscode-remote/wsl+Ubuntu/${OPTIONS.localPathForRepositories}/${repo}/${file}:${
+        line ?? "1"
+      }:1`
+      location.href = url
+      return url
+    },
     "vscode-insiders": (repo: string, file: string, line?: string) => {
       const url = `vscode-insiders://file/${OPTIONS.localPathForRepositories}/${repo}/${file}:${line ?? "1"}`
+      location.href = url
+      return url
+    },
+    "vscode-insiders-wsl": (repo: string, file: string, line?: string) => {
+      const url = `vscode-insiders://vscode-remote/wsl+Ubuntu/${OPTIONS.localPathForRepositories}/${repo}/${file}:${
+        line ?? "1"
+      }:1`
       location.href = url
       return url
     },
