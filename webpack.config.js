@@ -29,6 +29,14 @@ const generatePlugins = (env, mode, browser) => {
               manifest.browser_specific_settings = {
                 gecko: { id: process.env.npm_package_geckoId },
               }
+
+              // Firefos is not compatible with the manifest V3
+              manifest.manifest_version = 2
+              manifest.background = { scripts: [manifest.background.service_worker], persistent: false }
+              manifest.web_accessible_resources = manifest.web_accessible_resources[0].resources
+              manifest.browser_action = manifest.action
+              delete manifest.action
+
               // Allow extension to fetch localhost URLs on Firefox (permission not needed on Chrome)
               // https://github.com/github/fetch/issues/310#issuecomment-454662463
               manifest.permissions.push("*://localhost/*")

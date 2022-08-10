@@ -1,5 +1,5 @@
 context("VS Code icon", () => {
-  it("should be visible only once in file tree on hover", () => {
+  it("should be visible only once in file tree on hover", { browser: "!firefox" }, () => {
     cy.visit("/lmichelin/open-github-links-in-ide")
     cy.waitForNetworkIdle()
     cy.get("a[title='README.md']").realHover()
