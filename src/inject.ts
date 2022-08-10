@@ -236,7 +236,7 @@ const run = async () => {
       display: none;
     }`
 
-  document.body.appendChild(styleNode)
+  document.head.appendChild(styleNode)
 
   // set up an observer
   const pageChangeObserver = new MutationObserver(function (mutations) {
@@ -256,11 +256,9 @@ const run = async () => {
   observeChanges()
 
   // observe route change
-  const title = document.querySelector("head > title")
-  if (title)
-    pageChangeObserver.observe(title, {
-      childList: true,
-    })
+  pageChangeObserver.observe(document.head, {
+    childList: true,
+  })
 }
 
 void run()

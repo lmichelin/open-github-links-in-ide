@@ -70,4 +70,10 @@ context("VS Code icon", () => {
     cy.get('table tr span[title="Open config.yml in VS Code at line 26"]').should("be.hidden")
     cy.get('table tr span[title="Open config.yml in VS Code at line 27"]').should("be.hidden")
   })
+
+  it("should be visible on file block headers in files changed after navigation", () => {
+    cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
+    cy.get("a[href='/lmichelin/open-github-links-in-ide/pull/5/files']").click()
+    cy.get(".file span[title='Open config.yml in VS Code at line 5']").should("be.visible")
+  })
 })
