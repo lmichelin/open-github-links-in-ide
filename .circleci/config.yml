@@ -1,9 +1,15 @@
 version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.0
+
 jobs:
   build:
     docker:
       - image: cimg/node:lts-browsers
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-firefox
       - checkout
       - restore_cache:
           name: Restore dependencies cache
