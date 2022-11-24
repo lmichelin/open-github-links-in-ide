@@ -69,6 +69,11 @@ const run = async () => {
       location.href = url
       return url
     },
+    clion: (repo: string, file: string, line?: string) => {
+      const url = `clion://open?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${line ?? "1"}`
+      location.href = url
+      return url
+    },
     "jetbrains-webserver": (repo: string, file: string, line?: string) => {
       const url = `http://localhost:63342/api/file?file=${OPTIONS.localPathForRepositories}/${repo}/${file}&line=${
         line ?? "1"

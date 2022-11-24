@@ -9,7 +9,7 @@ This browser extension allows you to open files in your IDE directly from GitHub
 👉 Firefox: https://addons.mozilla.org/firefox/addon/open-github-in-ide/
 
 <p align="center">
-	<img src="screenshots/readme.png">
+	<img src="screenshots/readme.png" />
 <p>
 
 ## Getting started
@@ -31,6 +31,7 @@ Once the extension is installed:
 - Any JetBrains editor (using built-in web server)
 - WebStorm (not tested yet)
 - GoLand
+- CLion
 
 WSL with the Ubuntu distribution is also supported on VS Code, VSCodium and VS Code Insiders for Windows.
 
