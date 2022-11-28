@@ -68,6 +68,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.2.2 - November 28,2022
+
+- Add support for CLion ([#39](https://github.com/lmichelin/open-github-links-in-ide/pull/39))
+
 ### Version 1.2.1 - August 18,2022
 
 - Add support for GoLand ([#32](https://github.com/lmichelin/open-github-links-in-ide/pull/32))
