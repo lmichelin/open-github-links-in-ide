@@ -4,6 +4,17 @@
   justify-content: space-between;
 }
 
+.tree-item-file-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.file-header-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 /* position the icon correctly in file explorer and hide it */
 .open-in-ide-icon-file-explorer {
   margin-left: 5px;
@@ -14,6 +25,7 @@
 .open-in-ide-icon {
   display: flex;
   align-items: center;
+  z-index: 1000; /* Put the icon on top to avoid staying behind other tags */
 }
 
 .open-in-ide-icon > img {
@@ -31,8 +43,17 @@
   margin-left: 2px;
 }
 
+.tree-item-file-name:hover .open-in-ide-icon-file-explorer {
+  visibility: unset;
+}
+
 /* position the icon correctly instead of the file number */
 td.blob-num .open-in-ide-icon {
+  justify-content: flex-end;
+  margin-top: 1px;
+}
+
+a.js-open-in-ide-icon-added .open-in-ide-icon {
   justify-content: flex-end;
   margin-top: 1px;
 }
@@ -40,4 +61,18 @@ td.blob-num .open-in-ide-icon {
 /* hide the icon when cursor doesn't hover over the row */
 tr:not(:hover) td.blob-num .open-in-ide-icon {
   display: none;
+}
+
+a:not(:hover) .open-in-ide-icon {
+  display: none;
+}
+
+/* hide the line number when cursor hovers it */
+a.js-open-in-ide-icon-added:hover:before {
+  display : none;
+}
+
+/* In Gitlab re-extend the tree view to avoid shrinking */
+.tree-holder .tree-item .tree-item-file-name {
+  max-width: 100%;
 }

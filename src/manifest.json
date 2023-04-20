@@ -7,12 +7,13 @@
   "content_scripts": [
     {
       "run_at": "document_end",
-      "matches": ["https://github.com/*"],
+      "matches": ["https://github.com/*", "https://gitlab.com/*"],
       "js": ["inject.js"],
       "css": ["inject.css"]
     }
   ],
   "background": {
+    "scripts": ["background.js"],
     "service_worker": "background.js"
   },
   "action": {
@@ -28,7 +29,7 @@
   "web_accessible_resources": [
     {
       "resources": ["icons/*.png"],
-      "matches": ["https://github.com/*"]
+      "matches": ["https://github.com/*", "https://gitlab.com/*"]
     }
   ]
 }
