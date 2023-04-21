@@ -1,12 +1,12 @@
 # Browser extension to open GitHub file links in your IDE
 
-[![CircleCI](https://circleci.com/gh/lmichelin/open-github-links-in-ide.svg?style=svg)](https://circleci.com/gh/lmichelin/open-github-links-in-ide)
+[![CircleCI](https://circleci.com/gh/victorigualada/open-github-gitlab-links-in-ide.svg?style=svg)](https://circleci.com/gh/victorigualada/open-github-gitlab-links-in-ide)
 
 This browser extension allows you to open files in your IDE directly from GitHub, assuming the repository you are working on is cloned on your computer. When a fragment of a file is displayed, your IDE opens the file and puts the cursor at the desired line.
 
-👉 Google Chrome: https://chrome.google.com/webstore/detail/open-github-in-ide/bmifnnfmccmleigpaolofacllndmfned
+👉 Google Chrome: https://chrome.google.com/webstore/detail/open-github-gitlab-in-ide/bmifnnfmccmleigpaolofacllndmfned
 
-👉 Firefox: https://addons.mozilla.org/firefox/addon/open-github-in-ide/
+👉 Firefox: https://addons.mozilla.org/firefox/addon/open-github-gitlab-in-ide/
 
 <p align="center">
 	<img src="screenshots/readme.png" />
@@ -65,6 +65,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
   - Click on `Load Temporary Add-on`
   - Select the `dist/firefox/manifest.json` file
 - The extension and the pages using it will be automatically reloaded when you modify the source code
+
+## Credits
+
+ALl the credits to @lmichelin for the original extension. I just forked it and added support for Gitlab.
 
 ## Changelog
 

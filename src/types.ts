@@ -77,7 +77,7 @@ export type ChromeStorage = {
 }
 
 export const defaultChromeStorageOptions: ChromeStorage = {
-  localPathForRepositories: "/home/changeMe",
+  localPathForRepositories: "/path/to/repositories",
   defaultIde: "vscode",
   showIconInFileTree: true,
   showIconOnFileBlockHeaders: true,

@@ -69,7 +69,7 @@ a:not(:hover) .open-in-ide-icon {
 
 /* hide the line number when cursor hovers it */
 a.js-open-in-ide-icon-added:hover:before {
-  display : none;
+  display: none;
 }
 
 /* In Gitlab re-extend the tree view to avoid shrinking */
