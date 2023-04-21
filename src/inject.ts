@@ -166,21 +166,18 @@ const run = async () => {
       let inFilesChangedView = true
 
       // select file blocks
-      let primaryLinks = document.querySelectorAll(".file a.Link--primary[title]") // in files changed view
+      let primaryLinks = document.querySelectorAll(".file-info a.Link--primary") // in files changed view
 
       if (!primaryLinks.length) {
-        primaryLinks = document.querySelectorAll(".js-comment-container a.Link--primary[title]") // in discussion
+        primaryLinks = document.querySelectorAll("summary a.Link--primary") // in discussion
         inFilesChangedView = false
+        debug(primaryLinks)
       }
 
       const repo = window.location.href.split("/")[4]
 
       primaryLinks.forEach(linkElement => {
-        const file = linkElement
-          .getAttribute("title")
-          ?.split("→") // when file was renamed
-          .pop()
-          ?.trim()
+        const file = linkElement.innerHTML
 
         // no file found
         if (!file) return
