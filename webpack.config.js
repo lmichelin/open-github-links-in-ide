@@ -70,6 +70,7 @@ const generatePlugins = (env, mode, browser) => {
         path: path.join(__dirname, "build"),
         exclude: [/\.map$/],
         filename: `${browser}.zip`,
+        forceZip64Format: true,
       }),
     )
   }

@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/victorigualada/open-github-links-in-ide.git"
+    "url": "git+https://github.com/victorigualada/open-github-gitlab-links-in-ide.git"
   },
   "author": "Víctor Igualada Calatrava",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/victorigualada/open-github-links-in-ide/issues"
+    "url": "https://github.com/victorigualada/open-github-gitlab-links-in-ide/issues"
   },
-  "homepage": "https://github.com/victorigualada/open-github-links-in-ide#readme",
+  "homepage": "https://github.com/victorigualada/open-github-gitlab-links-in-ide#readme",
   "dependencies": {
     "milligram": "^1.4.1"
   },
@@ -34,8 +34,8 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
-    "cypress": "^9.7.0",
-    "cypress-real-events": "^1.7.1",
+    "cypress": "^12.10.0",
+    "cypress-real-events": "^1.7.6",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
