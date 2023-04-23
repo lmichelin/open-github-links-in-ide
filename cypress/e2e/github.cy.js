@@ -29,15 +29,12 @@ context("VS Code icon", () => {
 
   it("should be visible on file block headers in files changed", () => {
     cy.visit("/victorigualada/open-github-gitlab-links-in-ide/pull/1/files")
+    cy.get('div[data-tagsearch-path=".circleci/config.yml"').scrollIntoView()
+    cy.get(".file-info span[title='Open config.yml in VS Code at line 35']").should("be.visible")
+    cy.get('div[data-tagsearch-path=".gitignore"]').scrollIntoView()
+    cy.get(".file-info span[title='Open .gitignore in VS Code at line 4']").should("be.visible")
+    cy.get('div[data-tagsearch-path="README.md"]').scrollIntoView()
     cy.get(".file-info span[title='Open README.md in VS Code at line 3']").should("be.visible")
-    cy.get(
-      ".file-info a[href='#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519']",
-    ).scrollIntoView()
-    cy.get(".file-info span[title='Open package.json in VS Code at line 2']").should("be.visible")
-    cy.get(
-      ".file-info a[href='#diff-26894d0a0eb5985b3678b41e85c79b91b95acc088b842222bd313fda20eaac11']",
-    ).scrollIntoView()
-    cy.get(".file-info span[title='Open extension128.png in VS Code']").should("be.visible")
   })
 
   it("should be present but hidden when not hovering on file block lines in files changed", () => {
@@ -52,6 +49,7 @@ context("VS Code icon", () => {
   it("should be visible on file block headers in files changed after navigation", () => {
     cy.visit("/victorigualada/open-github-gitlab-links-in-ide/pull/1")
     cy.get("a[href='/victorigualada/open-github-gitlab-links-in-ide/pull/1/files']").click()
-    cy.get(".file-info span[title='Open README.md in VS Code at line 3']").should("be.visible")
+    cy.get('div[data-tagsearch-path=".circleci/config.yml"]').scrollIntoView()
+    cy.get(".file-info span[title='Open config.yml in VS Code at line 35']").should("be.visible")
   })
 })
