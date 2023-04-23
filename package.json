@@ -2,7 +2,7 @@
   "name": "open-github-gitlab-links-in-ide",
   "version": "1.2.2",
   "description": "Open GitHub or Gitlab files links in your IDE",
-  "geckoId": "{f1402343-719c-4b96-bc4f-f7bdcd7f796c}",
+  "geckoId": "{46cf314f-4597-4427-9499-a2b2d4499639}",
   "scripts": {
     "lint": "eslint --max-warnings 0 --ignore-path .gitignore . && prettier --ignore-path .gitignore -c **/*.{html,css,md,json,yml}",
     "lint:fix": "eslint --max-warnings 0 --fix --ignore-path .gitignore . ; prettier --ignore-path .gitignore --write **/*.{html,css,md,json,yml}",
