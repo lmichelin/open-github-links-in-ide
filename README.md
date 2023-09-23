@@ -68,6 +68,10 @@ Need a feature? Want to report a bug? Feel free to open an issue or a pull reque
 
 ## Changelog
 
+### Version 1.2.3 - September 23,2023
+
+- Fix bug: icon was not showing in conversations after an update on GitHub side
+
 ### Version 1.2.2 - November 28,2022
 
 - Add support for CLion ([#39](https://github.com/lmichelin/open-github-links-in-ide/pull/39))
