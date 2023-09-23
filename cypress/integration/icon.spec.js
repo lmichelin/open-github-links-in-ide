@@ -11,20 +11,21 @@ context("VS Code icon", () => {
 
   it("should be visible on file block headers in conversation", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('.js-comment-container a[title=".circleci/config.yml"]').scrollIntoView()
+    cy.get(".js-comment-container a").contains(".circleci/config.yml").scrollIntoView()
     cy.get('.js-comment-container span[title="Open config.yml in VS Code at line 27"]').should("be.visible")
   })
 
   it("should not visible on file block headers in resolved conversation", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('.js-comment-container a[title=".gitignore"]').scrollIntoView()
+    cy.get(".js-comment-container a").contains(".gitignore").scrollIntoView()
     cy.get('.js-comment-container span[title="Open .gitignore in VS Code at line 4"]').should("not.exist")
   })
 
   it("should be visible on file block headers in resolved conversation after click", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('.js-comment-container a[title=".gitignore"]').scrollIntoView()
-    cy.get('.js-comment-container a[title=".gitignore"]')
+    cy.get(".js-comment-container a").contains(".gitignore").scrollIntoView()
+    cy.get(".js-comment-container a")
+      .contains(".gitignore")
       .closest(".js-comment-container")
       .contains("Show resolved")
       .click()
@@ -33,7 +34,7 @@ context("VS Code icon", () => {
 
   it("should be present but hidden on file block lines in conversation", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('.js-comment-container a[title=".circleci/config.yml"]').scrollIntoView()
+    cy.get(".js-comment-container a").contains(".circleci/config.yml").scrollIntoView()
     cy.get('table tr span[title="Open config.yml in VS Code at line 24"]').should("be.hidden")
     cy.get('table tr span[title="Open config.yml in VS Code at line 25"]').should("be.hidden")
     cy.get('table tr span[title="Open config.yml in VS Code at line 26"]').should("be.hidden")
@@ -42,8 +43,9 @@ context("VS Code icon", () => {
 
   it("should be present but hidden on file block lines in resolved conversation after click", () => {
     cy.visit("/lmichelin/open-github-links-in-ide/pull/5")
-    cy.get('.js-comment-container a[title=".gitignore"]').scrollIntoView()
-    cy.get('.js-comment-container a[title=".gitignore"]')
+    cy.get(".js-comment-container a").contains(".gitignore").scrollIntoView()
+    cy.get(".js-comment-container a")
+      .contains(".gitignore")
       .closest(".js-comment-container")
       .contains("Show resolved")
       .click()
