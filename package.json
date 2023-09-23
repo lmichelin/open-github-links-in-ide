@@ -34,7 +34,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
-    "cypress": "^9.7.0",
+    "cypress": "^13.2.0",
     "cypress-real-events": "^1.10.3",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^8.10.0",
